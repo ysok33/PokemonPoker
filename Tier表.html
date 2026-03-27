@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>プレイスタイル ティアリスト（強さ基準・75種）</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 10mm;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 20px 14px 14px;
+      background: #050816;
+      color: #e5e7eb;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #f9fafb;
+    }
+    .subtitle {
+      color: #9ca3af;
+      margin-bottom: 12px;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+    .tier-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-bottom: 6px;
+    }
+    .tier-row {
+      border-radius: 7px;
+      padding: 6px 8px;
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 6px;
+      align-items: flex-start;
+      background: #111827;
+      border: 1px solid #4b5563;
+    }
+    .tier-label {
+      font-weight: 700;
+      font-size: 15px;
+      text-align: center;
+      padding: 7px 4px;
+      border-radius: 6px;
+      line-height: 1.2;
+    }
+    .tier-label span {
+      display: block;
+      font-size: 8px;
+      font-weight: 500;
+      margin-top: 3px;
+    }
+    .tier-S { background: #f59e0b; color: #111827; }
+    .tier-A { background: #22c55e; color: #052e16; }
+    .tier-B { background: #0ea5e9; color: #0b1120; }
+    .tier-C { background: #8b5cf6; color: #020617; }
+    .tier-D { background: #f97373; color: #450a0a; }
+
+    .tier-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 6px;
+    }
+    .tier-item {
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 10px;
+      background: #020617;
+      border: 1px solid #4b5563;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+    .tier-item span.no {
+      font-size: 9px;
+      color: #9ca3af;
+    }
+    .tier-item span.name {
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+    .tier-item span.tag {
+      font-size: 8px;
+      padding: 1px 5px;
+      border-radius: 999px;
+      background: #374151;
+      color: #e5e7eb;
+    }
+    .legend {
+      margin-top: 10px;
+      font-size: 9px;
+      color: #9ca3af;
+      border-top: 1px solid #4b5563;
+      padding-top: 6px;
+      line-height: 1.5;
+    }
+    .legend strong { color: #e5e7eb; }
+    @media print {
+      body { background: #ffffff; color: #000000; }
+    }
+  </style>
+</head>
+<body>
+  <h1>PLAYSTYLE TIER LIST（強さ基準・75種）</h1>
+  <div class="subtitle">
+    Pokerにおける「勝ちやすさ・リークの少なさ」を基準に、No.1〜No.75をS〜Dに分類したティア表です。<br>
+    各番号は元リストのNo.と対応しています。
+  </div>
+
+  <div class="tier-container">
+
+    <!-- S Tier -->
+    <div class="tier-row">
+      <div class="tier-label tier-S">
+        S
+        <span>理想形・最強クラス</span>
+      </div>
+      <div class="tier-content">
+        <div class="tier-item"><span class="no">No.15</span><span class="name">ブラッキー</span><span class="tag">闇影バランス</span></div>
+        <div class="tier-item"><span class="no">No.21</span><span class="name">ギャラドス</span><span class="tag">荒波バランスTAG</span></div>
+        <div class="tier-item"><span class="no">No.28</span><span class="name">フーディン</span><span class="tag">読心術TAG</span></div>
+        <div class="tier-item"><span class="no">No.30</span><span class="name">メタグロス</span><span class="tag">完璧TAG</span></div>
+      </div>
+    </div>
+
+    <!-- A Tier -->
+    <div class="tier-row">
+      <div class="tier-label tier-A">
+        A
+        <span>勝ち組レギュラー級</span>
+      </div>
+      <div class="tier-content">
+        <div class="tier-item"><span class="no">No.16</span><span class="name">ミュウツー</span><span class="tag">超越のTAG</span></div>
+        <div class="tier-item"><span class="no">No.17</span><span class="name">ゲンガー</span><span class="tag">幻惑のTAG</span></div>
+        <div class="tier-item"><span class="no">No.18</span><span class="name">エーフィ</span><span class="tag">予知バランス</span></div>
+        <div class="tier-item"><span class="no">No.19</span><span class="name">カイリュー</span><span class="tag">竜神バレル</span></div>
+        <div class="tier-item"><span class="no">No.20</span><span class="name">リザードン</span><span class="tag">炎バレル</span></div>
+        <div class="tier-item"><span class="no">No.22</span><span class="name">スイクン</span><span class="tag">清流コーラー</span></div>
+        <div class="tier-item"><span class="no">No.23</span><span class="name">フシギバナ</span><span class="tag">草毒の粘りTAG</span></div>
+        <div class="tier-item"><span class="no">No.24</span><span class="name">ラプラス</span><span class="tag">氷海コーラー</span></div>
+        <div class="tier-item"><span class="no">No.25</span><span class="name">ラティオス</span><span class="tag">誇りの竜TAG</span></div>
+        <div class="tier-item"><span class="no">No.26</span><span class="name">ニドキング</span><span class="tag">王のプライドTAG</span></div>
+        <div class="tier-item"><span class="no">No.27</span><span class="name">ミロカロス</span><span class="tag">美のプライドTAG</span></div>
+        <div class="tier-item"><span class="no">No.29</span><span class="name">ピカチュウ</span><span class="tag">電撃TAG</span></div>
+        <div class="tier-item"><span class="no">No.35</span><span class="name">サーナイト</span><span class="tag">共感するブラファー</span></div>
+      </div>
+    </div>
+
+    <!-- B Tier -->
+    <div class="tier-row">
+      <div class="tier-label tier-B">
+        B
+        <span>中堅〜調整次第でA</span>
+      </div>
+      <div class="tier-content">
+        <div class="tier-item"><span class="no">No.2</span><span class="name">ムウマ</span><span class="tag">幻コールド</span></div>
+        <div class="tier-item"><span class="no">No.3</span><span class="name">ペルシアン</span><span class="tag">貴族の一閃</span></div>
+        <div class="tier-item"><span class="no">No.4</span><span class="name">ドンファン</span><span class="tag">重戦車バレル</span></div>
+        <div class="tier-item"><span class="no">No.5</span><span class="name">ヤドキング</span><span class="tag">知将バレル</span></div>
+        <div class="tier-item"><span class="no">No.6</span><span class="name">アブソル</span><span class="tag">凶兆バレル</span></div>
+        <div class="tier-item"><span class="no">No.13</span><span class="name">ハガネール</span><span class="tag">長城スタンダード</span></div>
+        <div class="tier-item"><span class="no">No.14</span><span class="name">サンダース</span><span class="tag">電撃TPS</span></div>
+
+        <div class="tier-item"><span class="no">No.31</span><span class="name">カイリキー</span><span class="tag">剛腕の一撃</span></div>
+        <div class="tier-item"><span class="no">No.32</span><span class="name">バシャーモ</span><span class="tag">炎蹴りの奇襲</span></div>
+        <div class="tier-item"><span class="no">No.33</span><span class="name">ラグラージ</span><span class="tag">大地の教科書</span></div>
+        <div class="tier-item"><span class="no">No.34</span><span class="name">ウインディ</span><span class="tag">猛火バレル</span></div>
+        <div class="tier-item"><span class="no">No.36</span><span class="name">ボスゴドラ</span><span class="tag">鉄壁バレルマシン</span></div>
+        <div class="tier-item"><span class="no">No.39</span><span class="name">チルタリス</span><span class="tag">雲上のコーラー</span></div>
+        <div class="tier-item"><span class="no">No.44</span><span class="name">バクフーン</span><span class="tag">炎のスタンダード</span></div>
+        <div class="tier-item"><span class="no">No.45</span><span class="name">プラスル</span><span class="tag">支え合うバランサー</span></div>
+
+        <div class="tier-item"><span class="no">No.47</span><span class="name">ニューラ</span><span class="tag">爪研ぎブラファー</span></div>
+        <div class="tier-item"><span class="no">No.48</span><span class="name">ジュカイン</span><span class="tag">森の忍者LAG</span></div>
+        <div class="tier-item"><span class="no">No.50</span><span class="name">スターミー</span><span class="tag">星型バレラー</span></div>
+        <div class="tier-item"><span class="no">No.51</span><span class="name">ヘラクロス</span><span class="tag">豪腕バレラー</span></div>
+        <div class="tier-item"><span class="no">No.60</span><span class="name">ヘルガー</span><span class="tag">炎牙の標準LAG</span></div>
+      </div>
+    </div>
+
+    <!-- C Tier -->
+    <div class="tier-row">
+      <div class="tier-label tier-C">
+        C
+        <span>リーク大きめフィッシュ寄り</span>
+      </div>
+      <div class="tier-content">
+        <div class="tier-item"><span class="no">No.1</span><span class="name">イワーク</span><span class="tag">岩石ニット</span></div>
+        <div class="tier-item"><span class="no">No.7</span><span class="name">カビゴン</span><span class="tag">爆眠コーラー</span></div>
+        <div class="tier-item"><span class="no">No.8</span><span class="name">ヤミカラス</span><span class="tag">闇コレクター</span></div>
+        <div class="tier-item"><span class="no">No.9</span><span class="name">ミルタンク</span><span class="tag">ミルク安定</span></div>
+        <div class="tier-item"><span class="no">No.10</span><span class="name">トランセル</span><span class="tag">繭フォールド</span></div>
+        <div class="tier-item"><span class="no">No.11</span><span class="name">アリアドス</span><span class="tag">糸ブラフ</span></div>
+        <div class="tier-item"><span class="no">No.12</span><span class="name">フォレトス</span><span class="tag">鉄殻フォールド</span></div>
+
+        <div class="tier-item"><span class="no">No.37</span><span class="name">メガニウム</span><span class="tag">花園のコーラー</span></div>
+        <div class="tier-item"><span class="no">No.38</span><span class="name">ハッサム</span><span class="tag">鋼のコーラー</span></div>
+        <div class="tier-item"><span class="no">No.40</span><span class="name">フライゴン</span><span class="tag">砂漠の幻フォールダー</span></div>
+        <div class="tier-item"><span class="no">No.42</span><span class="name">エネコロロ</span><span class="tag">ふわふわ退避型</span></div>
+        <div class="tier-item"><span class="no">No.43</span><span class="name">ゴローニャ</span><span class="tag">岩盤SD職人</span></div>
+
+        <div class="tier-item"><span class="no">No.52</span><span class="name">レジロック</span><span class="tag">岩の守護神LAG</span></div>
+        <div class="tier-item"><span class="no">No.53</span><span class="name">ライコウ</span><span class="tag">電撃コーラーLAG</span></div>
+        <div class="tier-item"><span class="no">No.54</span><span class="name">バンギラス</span><span class="tag">砂嵐の重鎮LAG</span></div>
+
+        <div class="tier-item"><span class="no">No.67</span><span class="name">ソーナンス</span><span class="tag">守備極振り・耐久職人</span></div>
+        <div class="tier-item"><span class="no">No.68</span><span class="name">プリン</span><span class="tag">子守唄コーラー</span></div>
+        <div class="tier-item"><span class="no">No.69</span><span class="name">ヤドラン</span><span class="tag">のんびり受け師匠</span></div>
+        <div class="tier-item"><span class="no">No.73</span><span class="name">ラッキー</span><span class="tag">幸運SD職人</span></div>
+      </div>
+    </div>
+
+    <!-- D Tier -->
+    <div class="tier-row">
+      <div class="tier-label tier-D">
+        D
+        <span>純フィッシュ・極端リーク</span>
+      </div>
+      <div class="tier-content">
+        <div class="tier-item"><span class="no">No.41</span><span class="name">オコリザル</span><span class="tag">威嚇フォールダー</span></div>
+        <div class="tier-item"><span class="no">No.46</span><span class="name">ラティアス</span><span class="tag">幻惑の一撃LAG</span></div>
+        <div class="tier-item"><span class="no">No.49</span><span class="name">ボーマンダ</span><span class="tag">暴竜バレルLAG</span></div>
+        <div class="tier-item"><span class="no">No.55</span><span class="name">ダグトリオ</span><span class="tag">三位一体ブラインドスティーラー</span></div>
+        <div class="tier-item"><span class="no">No.56</span><span class="name">マタドガス</span><span class="tag">毒霧ブラファー</span></div>
+        <div class="tier-item"><span class="no">No.57</span><span class="name">カイロス</span><span class="tag">時計L切りバランサー</span></div>
+        <div class="tier-item"><span class="no">No.58</span><span class="name">ケンタロス</span><span class="tag">突進LAG</span></div>
+        <div class="tier-item"><span class="no">No.59</span><span class="name">ストライク</span><span class="tag">忍者LAG・高速奇襲型</span></div>
+
+        <div class="tier-item"><span class="no">No.61</span><span class="name">コダック</span><span class="tag">頭痛コーラー</span></div>
+        <div class="tier-item"><span class="no">No.62</span><span class="name">ニャース</span><span class="tag">コイン集めブラファー</span></div>
+        <div class="tier-item"><span class="no">No.63</span><span class="name">マリル</span><span class="tag">水風船の打ち逃げ</span></div>
+        <div class="tier-item"><span class="no">No.64</span><span class="name">ドードー</span><span class="tag">二頭バレル見習い</span></div>
+        <div class="tier-item"><span class="no">No.65</span><span class="name">ベトベトン</span><span class="tag">汚染バレラー</span></div>
+        <div class="tier-item"><span class="no">No.66</span><span class="name">ウパー</span><span class="tag">ぽわっとバレル</span></div>
+        <div class="tier-item"><span class="no">No.70</span><span class="name">コイキング</span><span class="tag">SD逃げ切り見習い</span></div>
+        <div class="tier-item"><span class="no">No.71</span><span class="name">ビードル</span><span class="tag">毒針ブラフ一発</span></div>
+        <div class="tier-item"><span class="no">No.72</span><span class="name">トゲピー</span><span class="tag">無垢なフォールドバランサー</span></div>
+        <div class="tier-item"><span class="no">No.74</span><span class="name">エイパム</span><span class="tag">長い尻尾でブラフ一発</span></div>
+        <div class="tier-item"><span class="no">No.75</span><span class="name">メタモン</span><span class="tag">コピーのフィッシュ</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="legend">
+    <div><strong>S：</strong> ほぼGTO寄りで長期的に最も勝ちやすい理想形スタイル。</div>
+    <div><strong>A：</strong> 勝ち組TAG〜高スキルLAG帯。微調整でSも狙えるクラス。</div>
+    <div><strong>B：</strong> 中堅〜微プラス層。構造は良いがストリート別リークが残る層。</div>
+    <div><strong>C：</strong> 明確なリークを抱えたフィッシュ寄りスタイル。</div>
+    <div><strong>D：</strong> LPS・暴走LAG・極端受けすぎ／フォールドしすぎなど、純フィッシュ構造。</div>
+  </div>
+</body>
+</html>
