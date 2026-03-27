@@ -2,117 +2,416 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>プレイスタイル ティアリスト（強さ基準・75種）</title>
+  <title>75種プレイスタイル相性ガイド（カラー版）</title>
   <style>
-    @page {
-      size: A4 portrait;
-      margin: 10mm;
+    :root {
+      --bg: #050816;
+      --bg-soft: #0b1120;
+      --card: #020617;
+      --border-soft: #1f2937;
+      --border-strong: #4b5563;
+      --text-main: #e5e7eb;
+      --text-sub: #9ca3af;
+      --accent: #22c55e;
+
+      --tag: #f97316;
+      --lag: #ec4899;
+      --tps: #3b82f6;
+      --normal: #0ea5e9;
+      --lps: #22c55e;
+
+      --tier-S: #f59e0b;
+      --tier-A: #22c55e;
+      --tier-B: #0ea5e9;
+      --tier-C: #8b5cf6;
+      --tier-D: #f97373;
+
+      --aff-strong: #16a34a;
+      --aff-good: #4ade80;
+      --aff-even: #eab308;
+      --aff-bad: #f97316;
+      --aff-worst: #ef4444;
     }
+
     * { box-sizing: border-box; }
+
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       margin: 0;
-      padding: 20px 14px 14px;
-      background: #050816;
-      color: #e5e7eb;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-      font-size: 11px;
-      line-height: 1.4;
-    }
-    h1 {
-      margin: 0 0 8px;
-      font-size: 22px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #f9fafb;
-    }
-    .subtitle {
-      color: #9ca3af;
-      margin-bottom: 12px;
-      font-size: 10px;
+      padding: 16px 20px 24px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 55%, #020617 100%);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      font-size: 13px;
       line-height: 1.5;
     }
-    .tier-container {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding-bottom: 6px;
-    }
-    .tier-row {
-      border-radius: 7px;
-      padding: 6px 8px;
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 6px;
-      align-items: flex-start;
-      background: #111827;
-      border: 1px solid #4b5563;
-    }
-    .tier-label {
-      font-weight: 700;
-      font-size: 15px;
-      text-align: center;
-      padding: 7px 4px;
-      border-radius: 6px;
-      line-height: 1.2;
-    }
-    .tier-label span {
-      display: block;
-      font-size: 8px;
-      font-weight: 500;
-      margin-top: 3px;
-    }
-    .tier-S { background: #f59e0b; color: #111827; }
-    .tier-A { background: #22c55e; color: #052e16; }
-    .tier-B { background: #0ea5e9; color: #0b1120; }
-    .tier-C { background: #8b5cf6; color: #020617; }
-    .tier-D { background: #f97373; color: #450a0a; }
 
-    .tier-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px 6px;
+    h1, h2, h3, h4 {
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 0.04em;
     }
-    .tier-item {
-      padding: 3px 8px;
-      border-radius: 999px;
-      font-size: 10px;
+
+    h1 {
+      font-size: 22px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 16px;
+      margin: 18px 0 8px;
+      border-left: 3px solid var(--accent);
+      padding-left: 8px;
+    }
+
+    h3 {
+      font-size: 14px;
+      margin: 16px 0 6px;
+    }
+
+    h4 {
+      font-size: 13px;
+      margin: 10px 0 4px;
+    }
+
+    p {
+      margin: 4px 0 6px;
+      color: var(--text-sub);
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-bottom: 10px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .panel {
+      background: radial-gradient(circle at top left, #111827 0, #020617 60%);
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      padding: 10px 12px;
+      box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.85),
+        0 0 0 1px rgba(15, 23, 42, 0.7);
+    }
+
+    .panel h3 {
+      margin-top: 0;
+      margin-bottom: 6px;
+      font-size: 13px;
+      text-transform: none;
+      letter-spacing: 0.02em;
+      color: #f9fafb;
+    }
+
+    .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px 10px;
+      font-size: 11px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-sub);
+    }
+
+    .legend-mark {
+      width: 18px;
+      height: 18px;
+      border-radius: 6px;
+      border: 1px solid var(--border-strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
       background: #020617;
-      border: 1px solid #4b5563;
+    }
+
+    .legend-mark.tier-S { background: var(--tier-S); color: #111827; }
+    .legend-mark.tier-A { background: var(--tier-A); color: #052e16; }
+    .legend-mark.tier-B { background: var(--tier-B); color: #0b1120; }
+    .legend-mark.tier-C { background: var(--tier-C); color: #020617; }
+    .legend-mark.tier-D { background: var(--tier-D); color: #450a0a; }
+
+    .style-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: 11px;
+      border: 1px solid var(--border-strong);
+      background: #020617;
+      margin: 2px 4px 2px 0;
+    }
+
+    .style-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+    }
+
+    .dot-TAG { background: var(--tag); }
+    .dot-LAG { background: var(--lag); }
+    .dot-TPS { background: var(--tps); }
+    .dot-NORMAL { background: var(--normal); }
+    .dot-LPS { background: var(--lps); }
+
+    .aff-chip {
       display: inline-flex;
       align-items: center;
       gap: 4px;
+      padding: 1px 6px;
+      border-radius: 999px;
+      font-size: 11px;
+      border: 1px solid var(--border-strong);
+      background: #020617;
+      margin-right: 4px;
+      margin-bottom: 2px;
+    }
+
+    .aff-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+    }
+
+    .aff-strong { background: var(--aff-strong); }
+    .aff-good { background: var(--aff-good); }
+    .aff-even { background: var(--aff-even); }
+    .aff-bad { background: var(--aff-bad); }
+    .aff-worst { background: var(--aff-worst); }
+
+    table.matrix {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px;
+      font-size: 11px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border-soft);
+    }
+
+    table.matrix th,
+    table.matrix td {
+      padding: 4px 6px;
+      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+      text-align: center;
       white-space: nowrap;
     }
-    .tier-item span.no {
-      font-size: 9px;
-      color: #9ca3af;
+
+    table.matrix thead {
+      background: linear-gradient(to right, #020617, #111827);
     }
-    .tier-item span.name {
+
+    table.matrix th {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    table.matrix tbody tr:nth-child(even) {
+      background: rgba(15, 23, 42, 0.75);
+    }
+
+    table.matrix tbody tr:nth-child(odd) {
+      background: rgba(15, 23, 42, 0.3);
+    }
+
+    .cell-strong { background: rgba(22, 163, 74, 0.35); }
+    .cell-good { background: rgba(74, 222, 128, 0.2); }
+    .cell-even { background: rgba(234, 179, 8, 0.25); }
+    .cell-bad { background: rgba(249, 115, 22, 0.28); }
+    .cell-worst { background: rgba(239, 68, 68, 0.35); }
+
+    .tier-section {
+      margin-top: 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      background: radial-gradient(circle at top left, rgba(30, 64, 175, 0.9) 0, #020617 48%);
+      padding: 10px 12px 10px;
+    }
+
+    .tier-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .tier-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 32px;
+      height: 26px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      border: 1px solid rgba(15, 23, 42, 0.8);
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.6);
+    }
+
+    .tier-badge.S { background: var(--tier-S); color: #111827; }
+    .tier-badge.A { background: var(--tier-A); color: #052e16; }
+    .tier-badge.B { background: var(--tier-B); color: #0b1120; }
+    .tier-badge.C { background: var(--tier-C); color: #020617; }
+    .tier-badge.D { background: var(--tier-D); color: #450a0a; }
+
+    .tier-title-main {
+      font-size: 14px;
       font-weight: 600;
       color: #e5e7eb;
     }
-    .tier-item span.tag {
-      font-size: 8px;
-      padding: 1px 5px;
-      border-radius: 999px;
-      background: #374151;
-      color: #e5e7eb;
-    }
-    .legend {
-      margin-top: 10px;
-      font-size: 9px;
-      color: #9ca3af;
-      border-top: 1px solid #4b5563;
-      padding-top: 6px;
-      line-height: 1.5;
-    }
-    .legend strong { color: #e5e7eb; }
-    @media print {
-      body { background: #ffffff; color: #000000; }
+
+    .tier-title-sub {
+      font-size: 11px;
+      color: var(--text-sub);
     }
 
+    .tier-list {
+      margin: 4px 0 0;
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 8px;
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .tier-list li {
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    details.char-block {
+      margin: 8px 0;
+      border-radius: 8px;
+      background: radial-gradient(circle at top left, rgba(30, 64, 175, 0.4) 0, #020617 60%);
+      border: 1px solid var(--border-soft);
+      padding: 6px 7px 6px;
+    }
+
+    details.char-block summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    details.char-block summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .char-head {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .char-no {
+      font-size: 11px;
+      color: var(--text-sub);
+      min-width: 44px;
+    }
+
+    .char-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .char-tagline {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .char-tier-label {
+      font-size: 11px;
+      padding: 1px 7px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-sub);
+      white-space: nowrap;
+    }
+
+    .char-body {
+      margin-top: 6px;
+      border-top: 1px dashed rgba(55, 65, 81, 0.9);
+      padding-top: 6px;
+      font-size: 12px;
+    }
+
+    .char-meta {
+      margin-bottom: 4px;
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .char-meta strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .char-aff-row {
+      margin: 2px 0 3px;
+      font-size: 11px;
+    }
+
+    .char-aff-row strong {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .char-aff-list {
+      margin: 1px 0 0;
+      padding-left: 14px;
+    }
+
+    .char-aff-list li {
+      margin: 1px 0;
+    }
+
+    .char-note {
+      margin-top: 3px;
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .muted {
+      color: var(--text-sub);
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        color: #000000;
+        padding: 10mm;
+      }
+      .panel, .tier-section, details.char-block {
+        box-shadow: none;
+        background: #ffffff;
+      }
+    }
     /* ===== ナビゲーションバー ===== */
 .top-nav {
   position: sticky;      /* スクロールで上固定。固定したくなければ static に。 */
@@ -176,7 +475,6 @@
     padding: 5px 8px;
   }
 }
-    
   </style>
 </head>
 <body>
@@ -189,154 +487,3173 @@
       <a href="Type-explanation.html">タイプ解説</a>
     </div>
   </nav>
+
+  <div class="page">
   
-  <h1>PLAYSTYLE TIER LIST（強さ基準・75種）</h1>
+  <h1>75種プレイスタイル相性ガイド</h1>
   <div class="subtitle">
-    Pokerにおける「勝ちやすさ・リークの少なさ」を基準に、No.1〜No.75をS〜Dに分類したティア表です。<br>
-    各番号は元リストのNo.と対応しています。
+    Pokerにおける75種のプレイスタイル（No.1〜No.75）について、「どのタイプに強く、どのタイプに弱いか」をざっくり相性マップとして整理したカラー付き資料です。<br>
+    長期的EVとエクスプロイタビリティを基準に、相性記号と色で直感的に把握できるようにしています。
   </div>
 
-  <div class="tier-container">
+  <!-- ここにクラス別マトリクス等を後で足してもOK -->
 
-    <!-- S Tier -->
-    <div class="tier-row">
-      <div class="tier-label tier-S">
-        S
-        <span>理想形・最強クラス</span>
-      </div>
-      <div class="tier-content">
-        <div class="tier-item"><span class="no">No.15</span><span class="name">ブラッキー</span><span class="tag">闇影バランス</span></div>
-        <div class="tier-item"><span class="no">No.21</span><span class="name">ギャラドス</span><span class="tag">荒波バランスTAG</span></div>
-        <div class="tier-item"><span class="no">No.28</span><span class="name">フーディン</span><span class="tag">読心術TAG</span></div>
-        <div class="tier-item"><span class="no">No.30</span><span class="name">メタグロス</span><span class="tag">完璧TAG</span></div>
+  <!-- S Tier -->
+  <div class="tier-section">
+    <div class="tier-header">
+      <div class="tier-badge S">S</div>
+      <div>
+        <div class="tier-title-main">S Tier（理想形・最強クラス）</div>
+        <div class="tier-title-sub">GTO寄りで長期的に最も勝ちやすい構造を持つスタイル群。</div>
       </div>
     </div>
+    <ul class="tier-list">
+      <li>No.15 ブラッキー（闇影バランス）</li>
+      <li>No.21 ギャラドス（荒波バランスTAG）</li>
+      <li>No.28 フーディン（読心術TAG）</li>
+      <li>No.30 メタグロス（完璧TAG）</li>
+    </ul>
 
-    <!-- A Tier -->
-    <div class="tier-row">
-      <div class="tier-label tier-A">
-        A
-        <span>勝ち組レギュラー級</span>
+    <!-- No.15 ブラッキー -->
+    <details class="char-block" open>
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.15</span>
+          <span class="char-name">ブラッキー</span>
+          <span class="char-tagline">闇影バランス</span>
+          <span class="style-chip"><span class="style-dot dot-TPS"></span>TPS × 標準 × バランス</span>
+        </div>
+        <span class="char-tier-label">S Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TPS × 標準 × バランス（冷静闇型・夜の影に隠れた完全体）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-strong"></span>◎ LPS全般</span>
+            例: No.61 コダック, No.62 ニャース, No.63 マリル, No.64 ドードー, No.65 ベトベトン, No.66 ウパー, No.67 ソーナンス, No.68 プリン, No.69 ヤドラン, No.70 コイキング, No.71 ビードル, No.72 トゲピー, No.73 ラッキー, No.74 エイパム, No.75 メタモン
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ TPS弱体型</span>
+            例: No.1 イワーク, No.10 トランセル, No.11 アリアドス, No.12 フォレトス, No.7 カビゴン, No.8 ヤミカラス, No.9 ミルタンク
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ 打ち逃げLAG</span>
+            例: No.46 ラティアス, No.47 ニューラ, No.48 ジュカイン
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× 強力TAGバレルマシン</span>
+            例: No.19 カイリュー, No.20 リザードン, No.21 ギャラドス
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 完璧TAG同格</span>
+            例: No.28 フーディン, No.30 メタグロス
+          </li>
+        </ul>
+        <div class="char-note">
+          標準ラインが読まれると優位性が薄れるため、レンジ構成とバレル頻度の微調整が鍵。<br>
+          バレル圧の強いTAG相手には、ハンド強度とレンジ頂点を意識して慎重に受ける必要があります。
+        </div>
       </div>
-      <div class="tier-content">
-        <div class="tier-item"><span class="no">No.16</span><span class="name">ミュウツー</span><span class="tag">超越のTAG</span></div>
-        <div class="tier-item"><span class="no">No.17</span><span class="name">ゲンガー</span><span class="tag">幻惑のTAG</span></div>
-        <div class="tier-item"><span class="no">No.18</span><span class="name">エーフィ</span><span class="tag">予知バランス</span></div>
-        <div class="tier-item"><span class="no">No.19</span><span class="name">カイリュー</span><span class="tag">竜神バレル</span></div>
-        <div class="tier-item"><span class="no">No.20</span><span class="name">リザードン</span><span class="tag">炎バレル</span></div>
-        <div class="tier-item"><span class="no">No.22</span><span class="name">スイクン</span><span class="tag">清流コーラー</span></div>
-        <div class="tier-item"><span class="no">No.23</span><span class="name">フシギバナ</span><span class="tag">草毒の粘りTAG</span></div>
-        <div class="tier-item"><span class="no">No.24</span><span class="name">ラプラス</span><span class="tag">氷海コーラー</span></div>
-        <div class="tier-item"><span class="no">No.25</span><span class="name">ラティオス</span><span class="tag">誇りの竜TAG</span></div>
-        <div class="tier-item"><span class="no">No.26</span><span class="name">ニドキング</span><span class="tag">王のプライドTAG</span></div>
-        <div class="tier-item"><span class="no">No.27</span><span class="name">ミロカロス</span><span class="tag">美のプライドTAG</span></div>
-        <div class="tier-item"><span class="no">No.29</span><span class="name">ピカチュウ</span><span class="tag">電撃TAG</span></div>
-        <div class="tier-item"><span class="no">No.35</span><span class="name">サーナイト</span><span class="tag">共感するブラファー</span></div>
+    </details>
+
+    <!-- No.21 ギャラドス -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.21</span>
+          <span class="char-name">ギャラドス</span>
+          <span class="char-tagline">荒波バランスTAG</span>
+          <span class="style-chip"><span class="style-dot dot-TAG"></span>TAG × バレルマシン × バランス</span>
+        </div>
+        <span class="char-tier-label">S Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TAG × バレルマシン × バランス（荒波を従える暴竜）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-strong"></span>◎ LPS全般</span>
+            例: No.61〜No.75 全般
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-strong"></span>◎ 受けすぎコーラー</span>
+            例: No.7 カビゴン, No.8 ヤミカラス, No.9 ミルタンク, No.22 スイクン, No.23 フシギバナ, No.24 ラプラス, No.37 メガニウム, No.38 ハッサム, No.39 チルタリス, No.52 レジロック, No.53 ライコウ, No.54 バンギラス, No.67 ソーナンス, No.68 プリン, No.69 ヤドラン
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ 打ち逃げ型全般</span>
+            例: No.2 ムウマ, No.3 ペルシアン, No.16 ミュウツー, No.17 ゲンガー, No.18 エーフィ, No.31 カイリキー, No.32 バシャーモ, No.33 ラグラージ, No.46 ラティアス, No.47 ニューラ, No.48 ジュカイン, No.61 コダック, No.62 ニャース, No.63 マリル
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 他の強力バレルマシンTAG</span>
+            例: No.19 カイリュー, No.20 リザードン
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 読心系TAG</span>
+            例: No.28 フーディン
+          </li>
+        </ul>
+        <div class="char-note">
+          荒波バレルは構造的に強いが、パターンを読まれるとコールダウンされやすい。<br>
+          LAGとの殴り合いは技量勝負になりやすく、レンジの厚さとポットコントロールが重要です。
+        </div>
       </div>
-    </div>
+    </details>
 
-    <!-- B Tier -->
-    <div class="tier-row">
-      <div class="tier-label tier-B">
-        B
-        <span>中堅〜調整次第でA</span>
+    <!-- No.28 フーディン -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.28</span>
+          <span class="char-name">フーディン</span>
+          <span class="char-tagline">読心術TAG</span>
+          <span class="style-chip"><span class="style-dot dot-TAG"></span>TAG × 標準 × SD頼み</span>
+        </div>
+        <span class="char-tier-label">S Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TAG × 標準 × SD頼み（超高知能の読心術師）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-strong"></span>◎ LPS全般</span>
+            例: No.61〜No.75 全般
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ TPS全般</span>
+            例: No.1〜No.15 のTPS系
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ 単純LAG・フィッシュLAG</span>
+            例: No.58 ケンタロス, No.59 ストライク, No.61 コダック, No.62 ニャース, No.63 マリル
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△〜× 高度なバレルマシン</span>
+            例: No.19 カイリュー, No.20 リザードン, No.21 ギャラドス, No.35 サーナイト, No.50 スターミー, No.51 ヘラクロス
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× 上手いLAG</span>
+            例: No.49 ボーマンダ, No.51 ヘラクロス, No.60 ヘルガー
+          </li>
+        </ul>
+        <div class="char-note">
+          読みの精度が高いほど真価を発揮するが、読みすぎて単純な相手に空振りするリスクもある。<br>
+          ショーダウン寄りの構造なので、ポットサイズ管理とブラフ頻度のバランスが重要です。
+        </div>
       </div>
-      <div class="tier-content">
-        <div class="tier-item"><span class="no">No.2</span><span class="name">ムウマ</span><span class="tag">幻コールド</span></div>
-        <div class="tier-item"><span class="no">No.3</span><span class="name">ペルシアン</span><span class="tag">貴族の一閃</span></div>
-        <div class="tier-item"><span class="no">No.4</span><span class="name">ドンファン</span><span class="tag">重戦車バレル</span></div>
-        <div class="tier-item"><span class="no">No.5</span><span class="name">ヤドキング</span><span class="tag">知将バレル</span></div>
-        <div class="tier-item"><span class="no">No.6</span><span class="name">アブソル</span><span class="tag">凶兆バレル</span></div>
-        <div class="tier-item"><span class="no">No.13</span><span class="name">ハガネール</span><span class="tag">長城スタンダード</span></div>
-        <div class="tier-item"><span class="no">No.14</span><span class="name">サンダース</span><span class="tag">電撃TPS</span></div>
+    </details>
 
-        <div class="tier-item"><span class="no">No.31</span><span class="name">カイリキー</span><span class="tag">剛腕の一撃</span></div>
-        <div class="tier-item"><span class="no">No.32</span><span class="name">バシャーモ</span><span class="tag">炎蹴りの奇襲</span></div>
-        <div class="tier-item"><span class="no">No.33</span><span class="name">ラグラージ</span><span class="tag">大地の教科書</span></div>
-        <div class="tier-item"><span class="no">No.34</span><span class="name">ウインディ</span><span class="tag">猛火バレル</span></div>
-        <div class="tier-item"><span class="no">No.36</span><span class="name">ボスゴドラ</span><span class="tag">鉄壁バレルマシン</span></div>
-        <div class="tier-item"><span class="no">No.39</span><span class="name">チルタリス</span><span class="tag">雲上のコーラー</span></div>
-        <div class="tier-item"><span class="no">No.44</span><span class="name">バクフーン</span><span class="tag">炎のスタンダード</span></div>
-        <div class="tier-item"><span class="no">No.45</span><span class="name">プラスル</span><span class="tag">支え合うバランサー</span></div>
-
-        <div class="tier-item"><span class="no">No.47</span><span class="name">ニューラ</span><span class="tag">爪研ぎブラファー</span></div>
-        <div class="tier-item"><span class="no">No.48</span><span class="name">ジュカイン</span><span class="tag">森の忍者LAG</span></div>
-        <div class="tier-item"><span class="no">No.50</span><span class="name">スターミー</span><span class="tag">星型バレラー</span></div>
-        <div class="tier-item"><span class="no">No.51</span><span class="name">ヘラクロス</span><span class="tag">豪腕バレラー</span></div>
-        <div class="tier-item"><span class="no">No.60</span><span class="name">ヘルガー</span><span class="tag">炎牙の標準LAG</span></div>
+    <!-- No.30 メタグロス -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.30</span>
+          <span class="char-name">メタグロス</span>
+          <span class="char-tagline">完璧TAG</span>
+          <span class="style-chip"><span class="style-dot dot-TAG"></span>TAG × 標準 × バランス</span>
+        </div>
+        <span class="char-tier-label">S Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TAG × 標準 × バランス（600族コンピューター・GTO完璧解答）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-strong"></span>◎ LPS全般</span>
+            例: No.61〜No.75 全般
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-strong"></span>◎ TPS全般</span>
+            例: No.1〜No.15 のTPS勢
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ ノーマル中堅群</span>
+            例: No.31 カイリキー, No.32 バシャーモ, No.33 ラグラージ, No.34 ウインディ, No.35 サーナイト, No.36 ボスゴドラ, No.37 メガニウム, No.38 ハッサム, No.39 チルタリス, No.40 フライゴン, No.42 エネコロロ, No.43 ゴローニャ, No.44 バクフーン, No.45 プラスル
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ 極端フォールドしすぎ</span>
+            例: No.10 トランセル, No.11 アリアドス, No.12 フォレトス, No.25 ラティオス, No.26 ニドキング, No.27 ミロカロス, No.40 フライゴン, No.41 オコリザル, No.42 エネコロロ, No.55 ダグトリオ, No.56 マタドガス, No.57 カイロス, No.70 コイキング, No.71 ビードル, No.72 トゲピー
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 高度LAGバレルマシン</span>
+            例: No.49 ボーマンダ, No.50 スターミー, No.51 ヘラクロス
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 同格TAG</span>
+            例: No.15 ブラッキー, No.21 ギャラドス, No.28 フーディン
+          </li>
+        </ul>
+        <div class="char-note">
+          4つの脳が常に最適解を計算するGTO寄り構造だが、人間相手のエクスプロイト調整が不足すると利幅が限定される。<br>
+          あえて一部レンジを歪ませて exploit する「人間臭さ」を混ぜるとEVがさらに伸びやすいスタイルです。
+        </div>
       </div>
-    </div>
-
-    <!-- C Tier -->
-    <div class="tier-row">
-      <div class="tier-label tier-C">
-        C
-        <span>リーク大きめフィッシュ寄り</span>
-      </div>
-      <div class="tier-content">
-        <div class="tier-item"><span class="no">No.1</span><span class="name">イワーク</span><span class="tag">岩石ニット</span></div>
-        <div class="tier-item"><span class="no">No.7</span><span class="name">カビゴン</span><span class="tag">爆眠コーラー</span></div>
-        <div class="tier-item"><span class="no">No.8</span><span class="name">ヤミカラス</span><span class="tag">闇コレクター</span></div>
-        <div class="tier-item"><span class="no">No.9</span><span class="name">ミルタンク</span><span class="tag">ミルク安定</span></div>
-        <div class="tier-item"><span class="no">No.10</span><span class="name">トランセル</span><span class="tag">繭フォールド</span></div>
-        <div class="tier-item"><span class="no">No.11</span><span class="name">アリアドス</span><span class="tag">糸ブラフ</span></div>
-        <div class="tier-item"><span class="no">No.12</span><span class="name">フォレトス</span><span class="tag">鉄殻フォールド</span></div>
-
-        <div class="tier-item"><span class="no">No.37</span><span class="name">メガニウム</span><span class="tag">花園のコーラー</span></div>
-        <div class="tier-item"><span class="no">No.38</span><span class="name">ハッサム</span><span class="tag">鋼のコーラー</span></div>
-        <div class="tier-item"><span class="no">No.40</span><span class="name">フライゴン</span><span class="tag">砂漠の幻フォールダー</span></div>
-        <div class="tier-item"><span class="no">No.42</span><span class="name">エネコロロ</span><span class="tag">ふわふわ退避型</span></div>
-        <div class="tier-item"><span class="no">No.43</span><span class="name">ゴローニャ</span><span class="tag">岩盤SD職人</span></div>
-
-        <div class="tier-item"><span class="no">No.52</span><span class="name">レジロック</span><span class="tag">岩の守護神LAG</span></div>
-        <div class="tier-item"><span class="no">No.53</span><span class="name">ライコウ</span><span class="tag">電撃コーラーLAG</span></div>
-        <div class="tier-item"><span class="no">No.54</span><span class="name">バンギラス</span><span class="tag">砂嵐の重鎮LAG</span></div>
-
-        <div class="tier-item"><span class="no">No.67</span><span class="name">ソーナンス</span><span class="tag">守備極振り・耐久職人</span></div>
-        <div class="tier-item"><span class="no">No.68</span><span class="name">プリン</span><span class="tag">子守唄コーラー</span></div>
-        <div class="tier-item"><span class="no">No.69</span><span class="name">ヤドラン</span><span class="tag">のんびり受け師匠</span></div>
-        <div class="tier-item"><span class="no">No.73</span><span class="name">ラッキー</span><span class="tag">幸運SD職人</span></div>
-      </div>
-    </div>
-
-    <!-- D Tier -->
-    <div class="tier-row">
-      <div class="tier-label tier-D">
-        D
-        <span>純フィッシュ・極端リーク</span>
-      </div>
-      <div class="tier-content">
-        <div class="tier-item"><span class="no">No.41</span><span class="name">オコリザル</span><span class="tag">威嚇フォールダー</span></div>
-        <div class="tier-item"><span class="no">No.46</span><span class="name">ラティアス</span><span class="tag">幻惑の一撃LAG</span></div>
-        <div class="tier-item"><span class="no">No.49</span><span class="name">ボーマンダ</span><span class="tag">暴竜バレルLAG</span></div>
-        <div class="tier-item"><span class="no">No.55</span><span class="name">ダグトリオ</span><span class="tag">三位一体ブラインドスティーラー</span></div>
-        <div class="tier-item"><span class="no">No.56</span><span class="name">マタドガス</span><span class="tag">毒霧ブラファー</span></div>
-        <div class="tier-item"><span class="no">No.57</span><span class="name">カイロス</span><span class="tag">時計L切りバランサー</span></div>
-        <div class="tier-item"><span class="no">No.58</span><span class="name">ケンタロス</span><span class="tag">突進LAG</span></div>
-        <div class="tier-item"><span class="no">No.59</span><span class="name">ストライク</span><span class="tag">忍者LAG・高速奇襲型</span></div>
-
-        <div class="tier-item"><span class="no">No.61</span><span class="name">コダック</span><span class="tag">頭痛コーラー</span></div>
-        <div class="tier-item"><span class="no">No.62</span><span class="name">ニャース</span><span class="tag">コイン集めブラファー</span></div>
-        <div class="tier-item"><span class="no">No.63</span><span class="name">マリル</span><span class="tag">水風船の打ち逃げ</span></div>
-        <div class="tier-item"><span class="no">No.64</span><span class="name">ドードー</span><span class="tag">二頭バレル見習い</span></div>
-        <div class="tier-item"><span class="no">No.65</span><span class="name">ベトベトン</span><span class="tag">汚染バレラー</span></div>
-        <div class="tier-item"><span class="no">No.66</span><span class="name">ウパー</span><span class="tag">ぽわっとバレル</span></div>
-        <div class="tier-item"><span class="no">No.70</span><span class="name">コイキング</span><span class="tag">SD逃げ切り見習い</span></div>
-        <div class="tier-item"><span class="no">No.71</span><span class="name">ビードル</span><span class="tag">毒針ブラフ一発</span></div>
-        <div class="tier-item"><span class="no">No.72</span><span class="name">トゲピー</span><span class="tag">無垢なフォールドバランサー</span></div>
-        <div class="tier-item"><span class="no">No.74</span><span class="name">エイパム</span><span class="tag">長い尻尾でブラフ一発</span></div>
-        <div class="tier-item"><span class="no">No.75</span><span class="name">メタモン</span><span class="tag">コピーのフィッシュ</span></div>
-      </div>
-    </div>
-
+    </details>
   </div>
 
-  <div class="legend">
-    <div><strong>S：</strong> ほぼGTO寄りで長期的に最も勝ちやすい理想形スタイル。</div>
-    <div><strong>A：</strong> 勝ち組TAG〜高スキルLAG帯。微調整でSも狙えるクラス。</div>
-    <div><strong>B：</strong> 中堅〜微プラス層。構造は良いがストリート別リークが残る層。</div>
-    <div><strong>C：</strong> 明確なリークを抱えたフィッシュ寄りスタイル。</div>
-    <div><strong>D：</strong> LPS・暴走LAG・極端受けすぎ／フォールドしすぎなど、純フィッシュ構造。</div>
-  </div>
 </body>
 </html>
+  <!-- A Tier -->
+  <div class="tier-section">
+    <div class="tier-header">
+      <div class="tier-badge A">A</div>
+      <div>
+        <div class="tier-title-main">A Tier（勝ち組レギュラー級）</div>
+        <div class="tier-title-sub">勝ち組TAG〜高スキルLAG帯。微調整でSも狙えるクラス。</div>
+      </div>
+    </div>
+    <ul class="tier-list">
+      <li>No.16 ミュウツー（超越のTAG）</li>
+      <li>No.17 ゲンガー（幻惑のTAG）</li>
+      <li>No.18 エーフィ（予知バランス）</li>
+      <li>No.19 カイリュー（竜神バレル）</li>
+      <li>No.20 リザードン（炎バレル）</li>
+      <li>No.22 スイクン（清流コーラー）</li>
+      <li>No.23 フシギバナ（草毒の粘りTAG）</li>
+      <li>No.24 ラプラス（氷海コーラー）</li>
+      <li>No.25 ラティオス（誇りの竜TAG）</li>
+      <li>No.26 ニドキング（王のプライドTAG）</li>
+      <li>No.27 ミロカロス（美のプライドTAG）</li>
+      <li>No.29 ピカチュウ（電撃TAG）</li>
+      <li>No.35 サーナイト（共感するブラファー）</li>
+    </ul>
+
+    <!-- No.16 ミュウツー -->
+    <details class="char-block" open>
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.16</span>
+          <span class="char-name">ミュウツー</span>
+          <span class="char-tagline">超越のTAG</span>
+          <span class="style-chip"><span class="style-dot dot-TAG"></span>TAG × 打ち逃げ × SD頼み</span>
+        </div>
+        <span class="char-tier-label">A Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TAG × 打ち逃げ × SD頼み（伝説最強格・精密な一撃で終わらせる超知性）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-strong"></span>◎ フォールドしすぎ全般</span>
+            例: No.1 イワーク, No.10 トランセル, No.11 アリアドス, No.12 フォレトス,
+                No.25 ラティオス, No.26 ニドキング, No.27 ミロカロス,
+                No.40 フライゴン, No.41 オコリザル, No.42 エネコロロ,
+                No.55 ダグトリオ, No.56 マタドガス, No.57 カイロス,
+                No.70 コイキング, No.71 ビードル, No.72 トゲピー
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ LPS全般</span>
+            例: No.61〜No.75 全般
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× バレルマシン</span>
+            例: No.19 カイリュー, No.20 リザードン, No.21 ギャラドス,
+                No.34 ウインディ, No.35 サーナイト, No.36 ボスゴドラ,
+                No.49 ボーマンダ, No.50 スターミー, No.51 ヘラクロス,
+                No.64 ドードー, No.65 ベトベトン, No.66 ウパー
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 受けすぎコーラー</span>
+            例: No.7 カビゴン, No.8 ヤミカラス, No.9 ミルタンク,
+                No.22 スイクン, No.23 フシギバナ, No.24 ラプラス,
+                No.37 メガニウム, No.38 ハッサム, No.39 チルタリス,
+                No.52 レジロック, No.53 ライコウ, No.54 バンギラス,
+                No.67 ソーナンス, No.68 プリン, No.69 ヤドラン
+          </li>
+        </ul>
+        <div class="char-note">
+          一撃の精度は非常に高いが、ターン以降のプランが薄くなりがち。<br>
+          参加レンジを絞りすぎるとブラインド負けしやすいため、プリフロップのレンジ設計とC-bet頻度のバランス調整が重要です。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.17 ゲンガー -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.17</span>
+          <span class="char-name">ゲンガー</span>
+          <span class="char-tagline">幻惑のTAG</span>
+          <span class="style-chip"><span class="style-dot dot-TAG"></span>TAG × 打ち逃げ × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">A Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TAG × 打ち逃げ × ブラフ多め（ゴーストのトリックスター）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-strong"></span>◎ フォールドしすぎ全般</span>
+            例: No.1 イワーク, No.10 トランセル, No.11 アリアドス, No.12 フォレトス,
+                No.25 ラティオス, No.26 ニドキング, No.27 ミロカロス,
+                No.40 フライゴン, No.41 オコリザル, No.42 エネコロロ,
+                No.55 ダグトリオ, No.56 マタドガス, No.57 カイロス,
+                No.70 コイキング, No.71 ビードル, No.72 トゲピー
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ TPS弱体型・単純ノーマル</span>
+            例: No.2 ムウマ, No.3 ペルシアン, No.13 ハガネール,
+                No.31 カイリキー, No.33 ラグラージ
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-worst"></span>× 受けすぎコーラー</span>
+            例: No.7 カビゴン, No.8 ヤミカラス, No.9 ミルタンク,
+                No.22 スイクン, No.23 フシギバナ, No.24 ラプラス,
+                No.37 メガニウム, No.38 ハッサム, No.39 チルタリス,
+                No.52 レジロック, No.53 ライコウ, No.54 バンギラス,
+                No.67 ソーナンス, No.68 プリン, No.69 ヤドラン
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× バレルマシン</span>
+            例: No.19 カイリュー, No.20 リザードン, No.21 ギャラドス,
+                No.34 ウインディ, No.35 サーナイト, No.36 ボスゴドラ,
+                No.49 ボーマンダ, No.50 スターミー, No.51 ヘラクロス
+          </li>
+        </ul>
+        <div class="char-note">
+          ブラフ頻度が高く、フォールドしがちな相手には非常に強いが、コーラー気質の相手には逆に自分が燃やされる。<br>
+          ブラフのサイズと頻度をテーブルごとに調整できるかが勝率を大きく左右します。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.18 エーフィ -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.18</span>
+          <span class="char-name">エーフィ</span>
+          <span class="char-tagline">予知バランス</span>
+          <span class="style-chip"><span class="style-dot dot-TAG"></span>TAG × 打ち逃げ × バランス</span>
+        </div>
+        <span class="char-tier-label">A Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TAG × 打ち逃げ × バランス（未来予知型・宝石が全てを見通す）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ フォールドしすぎ</span>
+            例: No.1 イワーク, No.10 トランセル, No.11 アリアドス, No.12 フォレトス,
+                No.25 ラティオス, No.26 ニドキング, No.27 ミロカロス,
+                No.40 フライゴン, No.41 オコリザル, No.42 エネコロロ,
+                No.55 ダグトリオ, No.56 マタドガス, No.57 カイロス,
+                No.70 コイキング, No.71 ビードル, No.72 トゲピー
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ LPS</span>
+            例: No.61〜No.75 全般
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ 打ち逃げ同士</span>
+            例: No.2 ムウマ, No.3 ペルシアン, No.16 ミュウツー, No.17 ゲンガー,
+                No.31 カイリキー, No.32 バシャーモ, No.33 ラグラージ,
+                No.46 ラティアス, No.47 ニューラ, No.48 ジュカイン,
+                No.61 コダック, No.62 ニャース, No.63 マリル
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ バレルマシン</span>
+            例: No.19 カイリュー, No.20 リザードン, No.21 ギャラドス,
+                No.34 ウインディ, No.35 サーナイト, No.36 ボスゴドラ,
+                No.49 ボーマンダ, No.50 スターミー, No.51 ヘラクロス,
+                No.64 ドードー, No.65 ベトベトン, No.66 ウパー
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 受けすぎコーラー</span>
+            例: No.7 カビゴン, No.8 ヤミカラス, No.9 ミルタンク,
+                No.22 スイクン, No.23 フシギバナ, No.24 ラプラス,
+                No.37 メガニウム, No.38 ハッサム, No.39 チルタリス,
+                No.52 レジロック, No.53 ライコウ, No.54 バンギラス,
+                No.67 ソーナンス, No.68 プリン, No.69 ヤドラン
+          </li>
+        </ul>
+        <div class="char-note">
+          「ここだ」というスポットを見抜いた一撃は強いが、一発止まりになりやすく、フォールドされると利益が小さくなりがち。<br>
+          未来予知の精度を上げつつ、バリューもきちんと取り切るライン設計が大事です。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.19 カイリュー -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.19</span>
+          <span class="char-name">カイリュー</span>
+          <span class="char-tagline">竜神バレル</span>
+          <span class="style-chip"><span class="style-dot dot-TAG"></span>TAG × バレルマシン × SD頼み</span>
+        </div>
+        <span class="char-tier-label">A Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TAG × バレルマシン × SD頼み（伝説の竜王型）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-strong"></span>◎ LPS全般</span>
+            例: No.61〜No.75 全般
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-strong"></span>◎ 受けすぎコーラー</span>
+            例: No.7 カビゴン, No.8 ヤミカラス, No.9 ミルタンク,
+                No.22 スイクン, No.23 フシギバナ, No.24 ラプラス,
+                No.37 メガニウム, No.38 ハッサム, No.39 チルタリス,
+                No.52 レジロック, No.53 ライコウ, No.54 バンギラス,
+                No.67 ソーナンス, No.68 プリン, No.69 ヤドラン
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ 打ち逃げ型・フォールドしすぎ</span>
+            例: No.1 イワーク, No.2 ムウマ, No.3 ペルシアン, No.10 トランセル,
+                No.11 アリアドス, No.12 フォレトス, No.16 ミュウツー,
+                No.17 ゲンガー, No.18 エーフィ, No.25 ラティオス,
+                No.26 ニドキング, No.27 ミロカロス, No.31 カイリキー,
+                No.32 バシャーモ, No.33 ラグラージ, No.40 フライゴン,
+                No.41 オコリザル, No.42 エネコロロ, No.46 ラティアス,
+                No.47 ニューラ, No.48 ジュカイン, No.55 ダグトリオ,
+                No.56 マタドガス, No.57 カイロス, No.61 コダック,
+                No.62 ニャース, No.63 マリル, No.70 コイキング,
+                No.71 ビードル, No.72 トゲピー
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 同格バレルマシン</span>
+            例: No.20 リザードン, No.21 ギャラドス, No.34 ウインディ,
+                No.35 サーナイト, No.36 ボスゴドラ, No.49 ボーマンダ,
+                No.50 スターミー, No.51 ヘラクロス, No.64 ドードー,
+                No.65 ベトベトン, No.66 ウパー
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× 上手いLAGバレラー</span>
+            例: No.49 ボーマンダ, No.50 スターミー, No.51 ヘラクロス, No.60 ヘルガー
+          </li>
+        </ul>
+        <div class="char-note">
+          ナッツ級ハンドでの三連バレルは非常に強いが、セミブラフ時に深追いして墜落するリスクがある。<br>
+          ブラフ側レンジの絞り込みと、ターン・リバーでのチェックバックラインを持てるかどうかが安定感の差になります。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.20 リザードン -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.20</span>
+          <span class="char-name">リザードン</span>
+          <span class="char-tagline">炎バレル</span>
+          <span class="style-chip"><span class="style-dot dot-TAG"></span>TAG × バレルマシン × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">A Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TAG × バレルマシン × ブラフ多め（炎の暴君型）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-strong"></span>◎ フォールドしすぎ全般</span>
+            例: No.1 イワーク, No.10 トランセル, No.11 アリアドス, No.12 フォレトス,
+                No.25 ラティオス, No.26 ニドキング, No.27 ミロカロス,
+                No.40 フライゴン, No.41 オコリザル, No.42 エネコロロ,
+                No.55 ダグトリオ, No.56 マタドガス, No.57 カイロス,
+                No.70 コイキング, No.71 ビードル, No.72 トゲピー
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ TPS・LPS</span>
+            例: TPS: No.1〜No.15, LPS: No.61〜No.75
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× 粘り強いコーラー</span>
+            例: No.7 カビゴン, No.9 ミルタンク, No.22 スイクン,
+                No.24 ラプラス, No.37 メガニウム, No.38 ハッサム,
+                No.39 チルタリス, No.52 レジロック, No.53 ライコウ,
+                No.54 バンギラス, No.67 ソーナンス, No.69 ヤドラン
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ バレルマシン同士</span>
+            例: No.19 カイリュー, No.21 ギャラドス, No.34 ウインディ,
+                No.35 サーナイト, No.36 ボスゴドラ, No.49 ボーマンダ,
+                No.50 スターミー, No.51 ヘラクロス, No.64 ドードー,
+                No.65 ベトベトン, No.66 ウパー
+          </li>
+        </ul>
+        <div class="char-note">
+          炎の三連バレルでフォールドさせる力は強いが、空振りするとスタックごと大炎上する。<br>
+          ブラフ比重をテーブル構成に合わせて下げられる柔軟性があるかどうかが、上振れだけでなく安定勝率を作るポイントです。
+        </div>
+      </div>
+    </details>
+
+      <!-- No.22 スイクン -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.22</span>
+          <span class="char-name">スイクン</span>
+          <span class="char-tagline">清流コーラー</span>
+          <span class="style-chip"><span class="style-dot dot-TAG"></span>TAG × 受けすぎコーラー × SD頼み</span>
+        </div>
+        <span class="char-tier-label">A Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TAG × 受けすぎコーラー × SD頼み（清廉TAGコーラー）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ ブラフ多めバレラー</span>
+            例: No.17 ゲンガー, No.20 リザードン, No.35 サーナイト,
+                No.50 スターミー, No.65 ベトベトン
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ 打ち逃げブラファー</span>
+            例: No.2 ムウマ, No.8 ヤミカラス, No.11 アリアドス,
+                No.17 ゲンガー, No.32 バシャーモ, No.47 ニューラ,
+                No.62 ニャース
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× バリュー厚いバレルマシン</span>
+            例: No.19 カイリュー, No.21 ギャラドス, No.34 ウインディ,
+                No.36 ボスゴドラ, No.51 ヘラクロス
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ TAG標準型</span>
+            例: No.15 ブラッキー, No.28 フーディン, No.29 ピカチュウ, No.30 メタグロス
+          </li>
+        </ul>
+        <div class="char-note">
+          澄んだコールで真実だけショーダウンに運べるが、ベットを控えすぎると自分のバリューが取り切れない。<br>
+          「コールすべきでないハンドを捨てる」「バリューのときは自分から打つ」の2点を意識できると、一気にS寄りになります。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.23 フシギバナ -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.23</span>
+          <span class="char-name">フシギバナ</span>
+          <span class="char-tagline">草毒の粘りTAG</span>
+          <span class="style-chip"><span class="style-dot dot-TAG"></span>TAG × 受けすぎコーラー × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">A Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TAG × 受けすぎコーラー × ブラフ多め（草の粘り＋毒粉ブラフ）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ ブラフ過多LAG・LPS</span>
+            例: No.46 ラティアス, No.47 ニューラ, No.50 スターミー,
+                No.56 マタドガス, No.62 ニャース, No.65 ベトベトン
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ 打ち逃げ型</span>
+            例: No.2 ムウマ, No.3 ペルシアン, No.16 ミュウツー, No.17 ゲンガー,
+                No.18 エーフィ, No.31 カイリキー, No.32 バシャーモ,
+                No.33 ラグラージ, No.46 ラティアス, No.47 ニューラ,
+                No.48 ジュカイン, No.61 コダック, No.62 ニャース, No.63 マリル
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ バリュー厚いバレルマシン</span>
+            例: No.19 カイリュー, No.21 ギャラドス, No.34 ウインディ,
+                No.36 ボスゴドラ, No.51 ヘラクロス
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× 上位TAG</span>
+            例: No.15 ブラッキー, No.28 フーディン, No.30 メタグロス
+          </li>
+        </ul>
+        <div class="char-note">
+          草の粘りで情報を拾いすぎると、TAG本来の「攻め」の牙が抜けやすい。<br>
+          受けるレンジをもう少し絞り、毒粉ブラフを「ここぞ」に限定できれば、より高いEVを出せます。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.24 ラプラス -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.24</span>
+          <span class="char-name">ラプラス</span>
+          <span class="char-tagline">氷海コーラー</span>
+          <span class="style-chip"><span class="style-dot dot-TAG"></span>TAG × 受けすぎコーラー × バランス</span>
+        </div>
+        <span class="char-tier-label">A Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TAG × 受けすぎコーラー × バランス（温かい優等生型）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ ブラフ混入バレラー</span>
+            例: No.17 ゲンガー, No.20 リザードン, No.35 サーナイト,
+                No.50 スターミー, No.65 ベトベトン
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ 打ち逃げ型・LPS</span>
+            例: 打ち逃げ: No.2, 3, 16, 17, 18, 31, 32, 33, 46, 47, 48, 61, 62, 63<br>
+                LPS: No.61〜No.75 全般
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ バリュー厚いバレルマシン</span>
+            例: No.19 カイリュー, No.21 ギャラドス, No.34 ウインディ,
+                No.36 ボスゴドラ, No.51 ヘラクロス
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ TAG標準型</span>
+            例: No.15 ブラッキー, No.28 フーディン, No.29 ピカチュウ, No.30 メタグロス
+          </li>
+        </ul>
+        <div class="char-note">
+          優等生すぎてポットが大きくなりにくく、勝っている時も「ちょい勝ち」で終わりがち。<br>
+          「ここは3ストリート取り切る」と決めたスポットで、しっかり自分からバリューを打てると一段階上に行けます。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.25 ラティオス -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.25</span>
+          <span class="char-name">ラティオス</span>
+          <span class="char-tagline">誇りの竜TAG</span>
+          <span class="style-chip"><span class="style-dot dot-TAG"></span>TAG × フォールドしすぎ × SD頼み</span>
+        </div>
+        <span class="char-tier-label">A Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TAG × フォールドしすぎ × SD頼み（伝説600族・誇り高き竜）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ LPS</span>
+            例: No.61〜No.75 全般（出たときのレンジ強度が高く、プレッシャーをかけやすい）
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ 打ち逃げ弱体型</span>
+            例: No.2 ムウマ, No.3 ペルシアン, No.31 カイリキー, No.63 マリル
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× LAG全般</span>
+            例: No.46 ラティアス, No.47 ニューラ, No.48 ジュカイン,
+                No.49 ボーマンダ, No.50 スターミー, No.51 ヘラクロス,
+                No.52 レジロック, No.53 ライコウ, No.54 バンギラス,
+                No.55 ダグトリオ, No.56 マタドガス, No.57 カイロス,
+                No.58 ケンタロス, No.59 ストライク, No.60 ヘルガー
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× 上位TAG</span>
+            例: No.15 ブラッキー, No.21 ギャラドス, No.28 フーディン, No.30 メタグロス
+          </li>
+        </ul>
+        <div class="char-note">
+          参加レンジを厳選しすぎて「出たらほぼ本物」になり、その分レンジが簡単に読まれてしまう。<br>
+          誇りを少し捨ててレンジを広げ、3ベットやスティールも混ぜられると、一気に現代TAG寄りになります。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.26 ニドキング -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.26</span>
+          <span class="char-name">ニドキング</span>
+          <span class="char-tagline">王のプライドTAG</span>
+          <span class="style-chip"><span class="style-dot dot-TAG"></span>TAG × フォールドしすぎ × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">A Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TAG × フォールドしすぎ × ブラフ多め（王のプライド＋毒角ブラフ）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ フォールドしすぎ同士</span>
+            例: No.1 イワーク, No.10 トランセル, No.11 アリアドス, No.12 フォレトス,
+                No.25 ラティオス, No.27 ミロカロス, No.40 フライゴン,
+                No.41 オコリザル, No.42 エネコロロ, No.55 ダグトリオ,
+                No.56 マタドガス, No.57 カイロス, No.70 コイキング,
+                No.71 ビードル, No.72 トゲピー
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ ブラフ耐性が低いコーラー</span>
+            例: No.9 ミルタンク, No.37 メガニウム, No.68 プリン, No.73 ラッキー
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× LAG全般</span>
+            例: No.46〜No.60 のLAG勢（降りすぎでブラインドを削られる）
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ ブラフ耐性の高いコーラー</span>
+            例: No.7 カビゴン, No.22 スイクン, No.24 ラプラス,
+                No.52 レジロック, No.53 ライコウ, No.54 バンギラス,
+                No.67 ソーナンス, No.69 ヤドラン
+          </li>
+        </ul>
+        <div class="char-note">
+          「王が選んだ戦場」での毒角ブラフは強力だが、降りすぎとブラフ多用が同居しており、レンジが極端になりがち。<br>
+          ブラフ頻度を少し下げ、バリュー側を厚くするだけでかなり安定感が増します。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.27 ミロカロス -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.27</span>
+          <span class="char-name">ミロカロス</span>
+          <span class="char-tagline">美のプライドTAG</span>
+          <span class="style-chip"><span class="style-dot dot-TAG"></span>TAG × フォールドしすぎ × バランス</span>
+        </div>
+        <span class="char-tier-label">A Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TAG × フォールドしすぎ × バランス（世界最美のプライド）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ LPS</span>
+            例: No.61〜No.75 全般（「絵になる」場面で完璧に制す）
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ 単純ノーマル</span>
+            例: No.31 カイリキー, No.33 ラグラージ, No.37 メガニウム,
+                No.39 チルタリス, No.43 ゴローニャ, No.45 プラスル
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× LAG全般</span>
+            例: No.46〜No.60 のLAG勢（ブラインドで削られやすい）
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ アグレッシブTAG</span>
+            例: No.19 カイリュー, No.20 リザードン, No.21 ギャラドス
+          </li>
+        </ul>
+        <div class="char-note">
+          「美しい場しか戦わない」スタンスは、テーブル選びとしては正しいが、参加機会を削りすぎるとEVが伸びない。<br>
+          多少泥臭いスポットも取りに行くことで、勝率は下げずにボリュームだけ増やせます。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.29 ピカチュウ -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.29</span>
+          <span class="char-name">ピカチュウ</span>
+          <span class="char-tagline">電撃TAG</span>
+          <span class="style-chip"><span class="style-dot dot-TAG"></span>TAG × 標準 × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">A Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TAG × 標準 × ブラフ多め（主人公の相棒・電光石火TAG）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ フォールドしすぎ</span>
+            例: No.1, 10, 11, 12, 25, 26, 27, 40, 41, 42, 55, 56, 57, 70, 71, 72
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ TPS・LPS</span>
+            例: TPS: No.1〜15, LPS: No.61〜75
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 上位TAG</span>
+            例: No.15 ブラッキー, No.21 ギャラドス, No.28 フーディン, No.30 メタグロス
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× 強LAG</span>
+            例: No.49 ボーマンダ, No.50 スターミー, No.51 ヘラクロス, No.60 ヘルガー
+          </li>
+        </ul>
+        <div class="char-note">
+          電撃ブラフでテンポ良くチップを拾えるが、スタックが浅くなると一気にパワー不足を露呈しやすい。<br>
+          「ブラフを減らして素直にバリュー取りに寄せる」スイッチを持てると、より上位帯でも通用します。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.35 サーナイト -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.35</span>
+          <span class="char-name">サーナイト</span>
+          <span class="char-tagline">共感するブラファー</span>
+          <span class="style-chip"><span class="style-dot dot-NORMAL"></span>ノーマル × バレルマシン × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">A Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> ノーマル × バレルマシン × ブラフ多め（テレパシー型マルチバレルブラファー）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-strong"></span>◎ フォールドしすぎ全般</span>
+            例: No.1, 10, 11, 12, 25, 26, 27, 40, 41, 42, 55, 56, 57, 70, 71, 72
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ TPS・迷いやすいノーマル</span>
+            例: TPS: No.1〜15, ノーマル: No.31 カイリキー, No.33 ラグラージ, No.37 メガニウム, No.39 チルタリス, No.43 ゴローニャ, No.45 プラスル
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× 粘り強いコーラー</span>
+            例: No.7 カビゴン, No.22 スイクン, No.24 ラプラス,
+                No.37 メガニウム, No.38 ハッサム, No.39 チルタリス,
+                No.52 レジロック, No.53 ライコウ, No.54 バンギラス,
+                No.67 ソーナンス, No.69 ヤドラン
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 上位TAG・LAG</span>
+            例: No.19 カイリュー, No.21 ギャラドス, No.28 フーディン, No.30 メタグロス,
+                No.49 ボーマンダ, No.51 ヘラクロス, No.60 ヘルガー
+          </li>
+        </ul>
+        <div class="char-note">
+          「今フォールドしたいでしょ？」の瞬間を読む力が高いほどEVが伸びるが、読み外しが続くとスタックが一気に蒸発する。<br>
+          ブラフ頻度を控えめにしつつ、バリュー強度に応じてベットサイズを調整できると、より安定した勝ち組になれます。
+        </div>
+      </div>
+    </details>
+
+  </div>
+  <!-- B Tier -->
+  <div class="tier-section">
+    <div class="tier-header">
+      <div class="tier-badge B">B</div>
+      <div>
+        <div class="tier-title-main">B Tier（中堅〜調整次第でA）</div>
+        <div class="tier-title-sub">構造は良いがストリート別リークが残る層。調整次第で十分勝ち組。</div>
+      </div>
+    </div>
+    <ul class="tier-list">
+      <li>No.2 ムウマ（幻コールド）</li>
+      <li>No.3 ペルシアン（貴族の一閃）</li>
+      <li>No.4 ドンファン（重戦車バレル）</li>
+      <li>No.5 ヤドキング（知将バレル）</li>
+      <li>No.6 アブソル（凶兆バレル）</li>
+      <li>No.13 ハガネール（長城スタンダード）</li>
+      <li>No.14 サンダース（電撃TPS）</li>
+      <li>No.31 カイリキー（剛腕の一撃）</li>
+      <li>No.32 バシャーモ（炎蹴りの奇襲）</li>
+      <li>No.33 ラグラージ（大地の教科書）</li>
+      <li>No.34 ウインディ（猛火バレル）</li>
+      <li>No.36 ボスゴドラ（鉄壁バレルマシン）</li>
+      <li>No.39 チルタリス（雲上のコーラー）</li>
+      <li>No.44 バクフーン（炎のスタンダード）</li>
+      <li>No.45 プラスル（支え合うバランサー）</li>
+      <li>No.47 ニューラ（爪研ぎブラファー）</li>
+      <li>No.48 ジュカイン（森の忍者LAG）</li>
+      <li>No.50 スターミー（星型バレラー）</li>
+      <li>No.51 ヘラクロス（豪腕バレラー）</li>
+      <li>No.60 ヘルガー（炎牙の標準LAG）</li>
+    </ul>
+
+    <!-- No.2 ムウマ -->
+    <details class="char-block" open>
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.2</span>
+          <span class="char-name">ムウマ</span>
+          <span class="char-tagline">幻コールド</span>
+          <span class="style-chip"><span class="style-dot dot-TPS"></span>TPS × 打ち逃げ × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TPS × 打ち逃げ × ブラフ多め（幽霊型ブラフ師）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ フォールドしすぎ</span>
+            例: No.1 イワーク, No.10 トランセル, No.11 アリアドス, No.12 フォレトス,
+                No.25 ラティオス, No.26 ニドキング, No.27 ミロカロス,
+                No.40 フライゴン, No.41 オコリザル, No.42 エネコロロ,
+                No.55 ダグトリオ, No.56 マタドガス, No.57 カイロス,
+                No.70 コイキング, No.71 ビードル, No.72 トゲピー
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ 単純LPS</span>
+            例: No.61 コダック, No.63 マリル, No.64 ドードー, No.66 ウパー
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-worst"></span>× 受けすぎコーラー</span>
+            例: No.7 カビゴン, No.8 ヤミカラス, No.9 ミルタンク,
+                No.22 スイクン, No.23 フシギバナ, No.24 ラプラス,
+                No.37 メガニウム, No.38 ハッサム, No.39 チルタリス,
+                No.52 レジロック, No.53 ライコウ, No.54 バンギラス,
+                No.67 ソーナンス, No.68 プリン, No.69 ヤドラン
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× バレルマシン</span>
+            例: No.19 カイリュー, No.20 リザードン, No.21 ギャラドス,
+                No.34 ウインディ, No.35 サーナイト, No.36 ボスゴドラ,
+                No.49 ボーマンダ, No.50 スターミー, No.51 ヘラクロス,
+                No.64 ドードー, No.65 ベトベトン, No.66 ウパー
+          </li>
+        </ul>
+        <div class="char-note">
+          出現頻度が低く一見タイトだが、出てきた時のブラフ比率が高いため、読み慣れた相手にはすぐに対応される。<br>
+          ブラフ頻度を下げて「本物もきちんと見せる」構成に変えれば、A〜S寄りにも育つタイプです。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.3 ペルシアン -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.3</span>
+          <span class="char-name">ペルシアン</span>
+          <span class="char-tagline">貴族の一閃</span>
+          <span class="style-chip"><span class="style-dot dot-TPS"></span>TPS × 打ち逃げ × バランス</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TPS × 打ち逃げ × バランス（優雅な貴族型・一撃離脱の猫）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ フォールドしすぎ・LPS</span>
+            例: フォールドしすぎ: No.1, 10, 11, 12, 25, 26, 27, 40, 41, 42, 55, 56, 57, 70, 71, 72<br>
+                LPS: No.61〜No.75 全般
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× バレルマシン</span>
+            例: No.19 カイリュー, No.20 リザードン, No.21 ギャラドス,
+                No.34 ウインディ, No.35 サーナイト, No.36 ボスゴドラ,
+                No.49 ボーマンダ, No.50 スターミー, No.51 ヘラクロス,
+                No.64 ドードー, No.65 ベトベトン, No.66 ウパー
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 受けすぎコーラー</span>
+            例: No.7, 8, 9, 22, 23, 24, 37, 38, 39, 52, 53, 54, 67, 68, 69
+          </li>
+        </ul>
+        <div class="char-note">
+          フロップ一発のC-betは優雅で強いが、その後のストリートでの戦いを極端に避ける傾向があり、ポットを取り切れないことが多い。<br>
+          ターン・リバーでのセカンドバレルを「バリュー中心」で増やせると、安定して勝ちやすくなります。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.4 ドンファン -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.4</span>
+          <span class="char-name">ドンファン</span>
+          <span class="char-tagline">重戦車バレル</span>
+          <span class="style-chip"><span class="style-dot dot-TPS"></span>TPS × バレルマシン × SD頼み</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TPS × バレルマシン × SD頼み（防御型重量バレラー）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ LPS・受けすぎコーラー</span>
+            例: LPS: No.61〜75, 受けすぎ: No.7, 8, 9, 22, 23, 24, 37, 38, 39, 52, 53, 54, 67, 68, 69
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ フォールドしすぎ</span>
+            例: No.1, 10, 11, 12, 25, 26, 27, 40, 41, 42, 55, 56, 57, 70, 71, 72
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ LAG・バレルマシン同士</span>
+            例: No.19, 20, 21, 34, 35, 36, 49, 50, 51, 60, 64, 65, 66
+          </li>
+        </ul>
+        <div class="char-note">
+          一度転がり出すと止まらない三連バレルは強いが、「転がり始める前」にレンジを読まれるとプリフロでポットを取られがち。<br>
+          プリフロップのスティールや3ベットも混ぜて、始動ポイントを増やせるとA寄りに化けます。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.5 ヤドキング -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.5</span>
+          <span class="char-name">ヤドキング</span>
+          <span class="char-tagline">知将バレル</span>
+          <span class="style-chip"><span class="style-dot dot-TPS"></span>TPS × バレルマシン × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TPS × バレルマシン × ブラフ多め（外見のんびり・内面超読心）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ フォールドしすぎ・LPS</span>
+            例: フォールドしすぎ: No.1, 10, 11, 12, 25, 26, 27, 40, 41, 42, 55, 56, 57, 70, 71, 72<br>
+                LPS: No.61〜75 全般
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ 単純ノーマル</span>
+            例: No.31 カイリキー, No.33 ラグラージ, No.37 メガニウム,
+                No.39 チルタリス, No.43 ゴローニャ, No.45 プラスル
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 上位TAG・強LAG</span>
+            例: No.15, 19, 20, 21, 28, 30, 49, 50, 51, 60
+          </li>
+        </ul>
+        <div class="char-note">
+          頭脳フル回転で三手先まで読むが、考えすぎて「今打つべき」タイミングを逃すことがある。<br>
+          プランを簡略化し、「このハンドとこのボードは機械的に打つ」と決めておくと、迷いが減ってEVが伸びやすいです。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.6 アブソル -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.6</span>
+          <span class="char-name">アブソル</span>
+          <span class="char-tagline">凶兆バレル</span>
+          <span class="style-chip"><span class="style-dot dot-TPS"></span>TPS × バレルマシン × バランス</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TPS × バレルマシン × バランス（孤高の凶兆獣）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ LPS・受けすぎコーラー</span>
+            例: LPS: No.61〜75, 受けすぎ: No.7, 8, 9, 22, 23, 24, 37, 38, 39, 52, 53, 54, 67, 68, 69
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ フォールドしすぎ</span>
+            例: No.1, 10, 11, 12, 25, 26, 27, 40, 41, 42, 55, 56, 57, 70, 71, 72
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 上位TAG・LAG</span>
+            例: No.15, 19, 20, 21, 28, 30, 46〜51, 60
+          </li>
+        </ul>
+        <div class="char-note">
+          タイトレンジから均整の取れた三連バレルを打てるが、「孤高すぎてテーブル情報を拾えない」という構造的弱点がある。<br>
+          ショウダウンや他人のプレーから「相手のリーク」を意識して読み始めると、より上位ティアへ近づきます。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.13 ハガネール -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.13</span>
+          <span class="char-name">ハガネール</span>
+          <span class="char-tagline">長城スタンダード</span>
+          <span class="style-chip"><span class="style-dot dot-TPS"></span>TPS × 標準 × SD頼み</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TPS × 標準 × SD頼み（鉄壁標準型・教科書を体現）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ LPS・単純ノーマル</span>
+            例: LPS: No.61〜75<br>
+                ノーマル: No.31 カイリキー, No.33 ラグラージ, No.37 メガニウム,
+                No.39 チルタリス, No.43 ゴローニャ, No.45 プラスル
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ LAG</span>
+            例: No.46〜60 のLAG勢（レンジを割られやすい）
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 上位TAG</span>
+            例: No.15, 19, 20, 21, 28, 30
+          </li>
+        </ul>
+        <div class="char-note">
+          「教科書通り」で強いものの、その教科書を知っている相手にはレンジを完全に読み切られてしまう。<br>
+          一部レンジをGTOよりも広げたり、チェックレイズを増やすなど、「長城に秘密の抜け道」を作ると格段に戦いづらくなります。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.14 サンダース -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.14</span>
+          <span class="char-name">サンダース</span>
+          <span class="char-tagline">電撃TPS</span>
+          <span class="style-chip"><span class="style-dot dot-TPS"></span>TPS × 標準 × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TPS × 標準 × ブラフ多め（電撃型・タイトに絞って電撃ブラフ） 
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ フォールドしすぎ・LPS</span>
+            例: フォールドしすぎ: No.1, 10, 11, 12, 25, 26, 27, 40, 41, 42, 55, 56, 57, 70, 71, 72<br>
+                LPS: No.61〜75
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 受けすぎコーラー</span>
+            例: No.7, 8, 9, 22, 23, 24, 37, 38, 39, 52, 53, 54, 67, 68, 69
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 上位TAG</span>
+            例: No.15, 19, 20, 21, 28, 30
+          </li>
+        </ul>
+        <div class="char-note">
+          出現頻度を絞った電撃ブラフは強力だが、パターンが固まりやすく、読み慣れた相手には完全に見切られる。<br>
+          ブラフのタイミングとボードテクスチャをより分散させることで、A〜S帯にも近づけます。
+        </div>
+      </div>
+    </details>
+
+      <!-- No.31 カイリキー -->
+    <details class="char-block" open>
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.31</span>
+          <span class="char-name">カイリキー</span>
+          <span class="char-tagline">剛腕の一撃</span>
+          <span class="style-chip"><span class="style-dot dot-NORMAL"></span>ノーマル × 打ち逃げ × SD頼み</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> ノーマル × 打ち逃げ × SD頼み（四本腕の剛腕エース）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ フォールドしすぎ・LPS</span>
+            例: フォールドしすぎ: No.1, 10, 11, 12, 25, 26, 27, 40, 41, 42, 55, 56, 57, 70, 71, 72<br>
+                LPS: No.61〜75
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× バレルマシン</span>
+            例: No.19, 20, 21, 34, 35, 36, 49, 50, 51, 64, 65, 66
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 受けすぎコーラー</span>
+            例: No.7, 8, 9, 22, 23, 24, 37, 38, 39, 52, 53, 54, 67, 68, 69
+          </li>
+        </ul>
+        <div class="char-note">
+          フロップ一発のC-betは強力だが、ターン以降で急におとなしくなるため、強いハンドでもポットを取り切れないことが多い。<br>
+          セカンド・サードバレルを「バリュー寄り」で増やすだけで、Aティア相当のポテンシャルがあります。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.32 バシャーモ -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.32</span>
+          <span class="char-name">バシャーモ</span>
+          <span class="char-tagline">炎蹴りの奇襲</span>
+          <span class="style-chip"><span class="style-dot dot-NORMAL"></span>ノーマル × 打ち逃げ × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> ノーマル × 打ち逃げ × ブラフ多め（炎格闘の御三家・加速ブラフ）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ フォールドしすぎ・TPS</span>
+            例: フォールドしすぎ: No.1, 10, 11, 12, 25, 26, 27, 40, 41, 42, 55, 56, 57, 70, 71, 72<br>
+                TPS: No.1〜15
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-worst"></span>× 受けすぎコーラー</span>
+            例: No.7, 8, 9, 22, 23, 24, 37, 38, 39, 52, 53, 54, 67, 68, 69
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ バレルマシン</span>
+            例: No.19, 20, 21, 34, 35, 36, 49, 50, 51, 64, 65, 66
+          </li>
+        </ul>
+        <div class="char-note">
+          加速した一発目のブラフは強いが、捕まると一気に信用を失う。<br>
+          「ブラフ頻度を控えめにして、バリューでも同じ動きをする」だけで、読みづらさが大きく向上します。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.33 ラグラージ -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.33</span>
+          <span class="char-name">ラグラージ</span>
+          <span class="char-tagline">大地の教科書</span>
+          <span class="style-chip"><span class="style-dot dot-NORMAL"></span>ノーマル × 打ち逃げ × バランス</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> ノーマル × 打ち逃げ × バランス（安定感抜群の万能型）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ LPS・フォールドしすぎ</span>
+            例: LPS: No.61〜75<br>
+                フォールドしすぎ: No.1, 10, 11, 12, 25, 26, 27, 40, 41, 42, 55, 56, 57, 70, 71, 72
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ 打ち逃げ同士</span>
+            例: No.2, 3, 16, 17, 18, 31, 32, 46, 47, 48, 61, 62, 63
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ バレルマシン</span>
+            例: No.19, 20, 21, 34, 35, 36, 49, 50, 51, 64, 65, 66
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 上位TAG</span>
+            例: No.15, 19, 20, 21, 28, 30
+          </li>
+        </ul>
+        <div class="char-note">
+          堅実なC-betで小さく勝ちを積み重ねやすいが、バレル不足で「相手が諦める前にこちらが諦める」展開になりがち。<br>
+          ターンでのセカンドバレルを、バリュー寄りに少しだけ増やすとA寄りになります。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.34 ウインディ -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.34</span>
+          <span class="char-name">ウインディ</span>
+          <span class="char-tagline">猛火バレル</span>
+          <span class="style-chip"><span class="style-dot dot-NORMAL"></span>ノーマル × バレルマシン × SD頼み</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> ノーマル × バレルマシン × SD頼み（俊足猛火の三連バレラー）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ LPS・受けすぎコーラー</span>
+            例: LPS: No.61〜75<br>
+                受けすぎ: No.7, 8, 9, 22, 23, 24, 37, 38, 39, 52, 53, 54, 67, 68, 69
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ 打ち逃げ型</span>
+            例: No.2, 3, 16, 17, 18, 31, 32, 33, 46, 47, 48, 61, 62, 63
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 上位バレルマシン</span>
+            例: No.19, 20, 21, 35, 36, 49, 50, 51
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 粘り強いコーラー</span>
+            例: No.7, 22, 24, 37, 38, 39, 52, 53, 54, 67, 69
+          </li>
+        </ul>
+        <div class="char-note">
+          「強いときは本当に強い」三連バレルだが、パターンを読まれると忠犬のようにコールされ続けてしまう。<br>
+          ハンド強度に応じてチェックも混ぜることで、レンジの上限を隠せるようになります。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.36 ボスゴドラ -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.36</span>
+          <span class="char-name">ボスゴドラ</span>
+          <span class="char-tagline">鉄壁バレルマシン</span>
+          <span class="style-chip"><span class="style-dot dot-NORMAL"></span>ノーマル × バレルマシン × バランス</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> ノーマル × バレルマシン × バランス（装甲型マルチバレラー）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ LPS・受けすぎコーラー・フォールドしすぎ</span>
+            例: LPS: No.61〜75, 受けすぎ: No.7, 8, 9, 22, 23, 24, 37, 38, 39, 52, 53, 54, 67, 68, 69,<br>
+                フォールドしすぎ: No.1, 10, 11, 12, 25, 26, 27, 40, 41, 42, 55, 56, 57, 70, 71, 72
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 俊敏LAG</span>
+            例: No.46 ラティアス, No.47 ニューラ, No.48 ジュカイン,
+                No.49 ボーマンダ, No.50 スターミー, No.51 ヘラクロス,
+                No.58 ケンタロス, No.59 ストライク, No.60 ヘルガー
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 上位TAG</span>
+            例: No.15, 19, 20, 21, 28, 30
+          </li>
+        </ul>
+        <div class="char-note">
+          鉄の規律で三連バレルを均等配分できるが、動きが重く、俊敏なLAGのライン変化に追いつけないことが多い。<br>
+          一部スポットでは「フロップで諦める」判断を増やし、無駄バレルを減らすと勝率が安定します。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.39 チルタリス -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.39</span>
+          <span class="char-name">チルタリス</span>
+          <span class="char-tagline">雲上のコーラー</span>
+          <span class="style-chip"><span class="style-dot dot-NORMAL"></span>ノーマル × 受けすぎコーラー × バランス</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> ノーマル × 受けすぎコーラー × バランス（柔軟な雲型フローティング）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ ブラフ過多バレラー・打ち逃げ型</span>
+            例: ブラフ過多: No.17, 20, 35, 50, 56, 62, 65<br>
+                打ち逃げ: No.2, 3, 16, 17, 18, 31, 32, 33, 46, 47, 48, 61, 62, 63
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-worst"></span>× LAG全般</span>
+            例: No.46〜60（受け流しすぎて踏み台にされやすい）
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ バリュー厚いバレルマシン</span>
+            例: No.19, 21, 34, 36, 51
+          </li>
+        </ul>
+        <div class="char-note">
+          雲のように受け流す柔軟さは魅力だが、コールしすぎて自分からポットを作らないため、EVが伸びにくい。<br>
+          「守るレンジを絞る」ことと、「強いときは自分からバリューを打つ」ことを意識すると、A寄りになります。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.44 バクフーン -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.44</span>
+          <span class="char-name">バクフーン</span>
+          <span class="char-tagline">炎のスタンダード</span>
+          <span class="style-chip"><span class="style-dot dot-NORMAL"></span>ノーマル × 標準 × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> ノーマル × 標準 × ブラフ多め（御三家の炎ネズミ）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ フォールドしすぎ・LPS・TPS</span>
+            例: フォールドしすぎ: No.1, 10, 11, 12, 25, 26, 27, 40, 41, 42, 55, 56, 57, 70, 71, 72<br>
+                LPS: No.61〜75, TPS: No.1〜15
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 受けすぎコーラー</span>
+            例: No.7, 8, 9, 22, 23, 24, 37, 38, 39, 52, 53, 54, 67, 68, 69
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 上位TAG</span>
+            例: No.15, 19, 20, 21, 28, 30
+          </li>
+        </ul>
+        <div class="char-note">
+          首の炎がボッと揺れたタイミングがそのままブラフ合図になりやすく、読み慣れた相手には通りにくい。<br>
+          炎が揺れたときに「むしろバリューを多めにする」逆転発想を持つと、相手からすると非常に読みづらくなります。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.45 プラスル -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.45</span>
+          <span class="char-name">プラスル</span>
+          <span class="char-tagline">支え合うバランサー</span>
+          <span class="style-chip"><span class="style-dot dot-NORMAL"></span>ノーマル × 標準 × バランス</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> ノーマル × 標準 × バランス（教科書的チームワーク型）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ LPS・極端フォールドしすぎ</span>
+            例: LPS: No.61〜75<br>
+                フォールドしすぎ: No.1, 10, 11, 12, 25, 26, 27, 40, 41, 42, 55, 56, 57, 70, 71, 72
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 尖った武器を持つ相手</span>
+            例: 強TAG: No.15, 19, 20, 21, 28, 30<br>
+                強LAG: No.49, 50, 51, 60
+          </li>
+        </ul>
+        <div class="char-note">
+          偏りなく整ったバランス型だが、その分「これといった武器」がなく、印象もチップも薄くなりがち。<br>
+          自分の得意スポット（例: 3ベットポット、BTNオープンなど）を決めて、そこでは少しアグレッシブになると強みが際立ちます。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.47 ニューラ -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.47</span>
+          <span class="char-name">ニューラ</span>
+          <span class="char-tagline">爪研ぎブラファー</span>
+          <span class="style-chip"><span class="style-dot dot-LAG"></span>LAG × 打ち逃げ × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LAG × 打ち逃げ × ブラフ多め（冷酷な爪先ブラフ窃盗犯）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ フォールドしすぎ・TPS・単純ノーマル</span>
+            例: フォールドしすぎ: No.1, 10, 11, 12, 25, 26, 27, 40, 41, 42, 55, 56, 57, 70, 71, 72<br>
+                TPS: No.1〜15, 単純ノーマル: No.31, 33, 37, 39, 43, 45
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-worst"></span>× 受けすぎコーラー</span>
+            例: No.7, 8, 9, 22, 23, 24, 37, 38, 39, 52, 53, 54, 67, 68, 69（コールダウンされると紙装甲がバレる）
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 上位TAG</span>
+            例: No.15, 19, 20, 21, 28, 30
+          </li>
+        </ul>
+        <div class="char-note">
+          「一閃ブラフでポットを盗む」タイプで、相手が下手なうちは大きく勝てるが、慣れたコーラー相手には一気に苦しくなる。<br>
+          ブラフ頻度を落とし、バリュー側も同じスピードでプレーできると、A〜S帯も射程に入ります。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.48 ジュカイン -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.48</span>
+          <span class="char-name">ジュカイン</span>
+          <span class="char-tagline">森の忍者LAG</span>
+          <span class="style-chip"><span class="style-dot dot-LAG"></span>LAG × 打ち逃げ × バランス</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LAG × 打ち逃げ × バランス（最速御三家・リーフブレード）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ フォールドしすぎ・LPS・TPS</span>
+            例: フォールドしすぎ: No.1, 10, 11, 12, 25, 26, 27, 40, 41, 42, 55, 56, 57, 70, 71, 72<br>
+                LPS: No.61〜75, TPS: No.1〜15
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ バレルマシン</span>
+            例: No.19, 20, 21, 34, 35, 36, 49, 50, 51, 64, 65, 66
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 受けすぎコーラー</span>
+            例: No.7, 8, 9, 22, 23, 24, 37, 38, 39, 52, 53, 54, 67, 68, 69
+          </li>
+        </ul>
+        <div class="char-note">
+          一発勝負のC-betは非常に速いが、深いポット戦に向かないため、スタックが深いゲームではEVが伸びにくい。<br>
+          一部ハンドでターン以降のプランを用意し、「一発だけのLAG」から卒業できれば、A帯にも十分届きます。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.50 スターミー -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.50</span>
+          <span class="char-name">スターミー</span>
+          <span class="char-tagline">星型バレラー</span>
+          <span class="style-chip"><span class="style-dot dot-LAG"></span>LAG × バレルマシン × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LAG × バレルマシン × ブラフ多め（謎の星型フォルム）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ フォールドしすぎ・TPS・単純ノーマル</span>
+            例: フォールドしすぎ: No.1, 10, 11, 12, 25, 26, 27, 40, 41, 42, 55, 56, 57, 70, 71, 72<br>
+                TPS: No.1〜15, 単純ノーマル: No.31, 33, 37, 39, 43, 45
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-worst"></span>× 粘り強いコーラー</span>
+            例: No.7, 22, 24, 37, 38, 39, 52, 53, 54, 67, 69（ブラフ比重が高く、コールダウンに弱い）
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 上位TAG</span>
+            例: No.15, 19, 20, 21, 28, 30
+          </li>
+        </ul>
+        <div class="char-note">
+          中央の宝石が光るたびに相手を迷わせるが、「光ったらほぼブラフ」と読まれると一気に厳しくなる。<br>
+          バリュー側でもしっかり三連撃てるようになれば、A〜S帯のLAGとしても戦える器です。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.51 ヘラクロス -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.51</span>
+          <span class="char-name">ヘラクロス</span>
+          <span class="char-tagline">豪腕バレラー</span>
+          <span class="style-chip"><span class="style-dot dot-LAG"></span>LAG × バレルマシン × バランス</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LAG × バレルマシン × バランス（力任せ三連バレル型）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ LPS・受けすぎコーラー・フォールドしすぎ</span>
+            例: LPS: No.61〜75,<br>
+                受けすぎ: No.7, 8, 9, 22, 23, 24, 37, 38, 39, 52, 53, 54, 67, 68, 69,<br>
+                フォールドしすぎ: No.1, 10, 11, 12, 25, 26, 27, 40, 41, 42, 55, 56, 57, 70, 71, 72
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 上位TAG</span>
+            例: No.15, 19, 20, 21, 28, 30（読み切られるとカウンターで吹き飛ぶ）
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 同格LAG</span>
+            例: No.49, 50, 60
+          </li>
+        </ul>
+        <div class="char-note">
+          スタックの重みを角に乗せて突進するスタイルは圧巻だが、「まだ行く！」を見抜かれると逆にカウンターを浴びやすい。<br>
+          一部スポットではターンでブレーキを踏めるようになると、勝率がかなり安定します。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.60 ヘルガー -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.60</span>
+          <span class="char-name">ヘルガー</span>
+          <span class="char-tagline">炎牙の標準LAG</span>
+          <span class="style-chip"><span class="style-dot dot-LAG"></span>LAG × 標準 × バランス</span>
+        </div>
+        <span class="char-tier-label">B Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LAG × 標準 × バランス（炎と闇の二刀流・標準LAG） 
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ LPS・TPS・フォールドしすぎ</span>
+            例: LPS: No.61〜75, TPS: No.1〜15,<br>
+                フォールドしすぎ: No.1, 10, 11, 12, 25, 26, 27, 40, 41, 42, 55, 56, 57, 70, 71, 72
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 尖った武器を持つ相手（上位TAG・LAG）</span>
+            例: TAG: No.15, 19, 20, 21, 28, 30<br>
+                LAG: No.49, 50, 51
+          </li>
+        </ul>
+        <div class="char-note">
+          炎のキバでバリュー、闇でブラフを噛み分けるバランス型だが、「平均的なLAG」に収まりやすく、突出した武器に押されがち。<br>
+          どこか1ストリート（例: ターン）に尖ったアグレッションを追加すると、一気にA帯LAGの仲間入りができます。
+        </div>
+      </div>
+    </details>
+
+  </div>
+    <!-- C Tier -->
+  <div class="tier-section">
+    <div class="tier-header">
+      <div class="tier-badge C">C</div>
+      <div>
+        <div class="tier-title-main">C Tier（リーク大きめフィッシュ寄り）</div>
+        <div class="tier-title-sub">構造的なリークを抱えたスタイル群。ターゲットにしやすいが、たまに刺さる。</div>
+      </div>
+    </div>
+    <ul class="tier-list">
+      <li>No.1 イワーク（岩石ニット）</li>
+      <li>No.7 カビゴン（爆眠コーラー）</li>
+      <li>No.8 ヤミカラス（闇コレクター）</li>
+      <li>No.9 ミルタンク（ミルク安定）</li>
+      <li>No.10 トランセル（繭フォールド）</li>
+      <li>No.11 アリアドス（糸ブラフ）</li>
+      <li>No.12 フォレトス（鉄殻フォールド）</li>
+      <li>No.37 メガニウム（花園のコーラー）</li>
+      <li>No.38 ハッサム（鋼のコーラー）</li>
+      <li>No.40 フライゴン（砂漠の幻フォールダー）</li>
+      <li>No.42 エネコロロ（ふわふわ退避型）</li>
+      <li>No.43 ゴローニャ（岩盤SD職人）</li>
+      <li>No.52 レジロック（岩の守護神LAG）</li>
+      <li>No.53 ライコウ（電撃コーラーLAG）</li>
+      <li>No.54 バンギラス（砂嵐の重鎮LAG）</li>
+      <li>No.67 ソーナンス（守備極振り・耐久職人）</li>
+      <li>No.68 プリン（子守唄コーラー）</li>
+      <li>No.69 ヤドラン（のんびり受け師匠）</li>
+      <li>No.73 ラッキー（幸運SD職人）</li>
+    </ul>
+
+    <!-- No.1 イワーク -->
+    <details class="char-block" open>
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.1</span>
+          <span class="char-name">イワーク</span>
+          <span class="char-tagline">岩石ニット</span>
+          <span class="style-chip"><span class="style-dot dot-TPS"></span>TPS × 打ち逃げ × SD頼み</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TPS × 打ち逃げ × SD頼み（超守備型・動かない岩壁）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ LPS弱体型</span>
+            例: No.61 コダック, No.63 マリル, No.64 ドードー, No.66 ウパー, No.70 コイキング
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× LAG全般</span>
+            例: No.46〜No.60（ブラインドを狙われ続ける）
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× TAG全般</span>
+            例: No.15, 16, 17, 18, 19, 20, 21, 22〜30
+          </li>
+        </ul>
+        <div class="char-note">
+          「超強ハンドだけ待つニット」は理論上は負けづらいが、ブラインドでやせ細りやすく、ポットシェアを他人に譲りすぎる。[web:53][web:170]  
+          プリフロの参加レンジを少し広げるだけでも、簡単に上位ティアへ移行できる素質があります。[web:170]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.7 カビゴン -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.7</span>
+          <span class="char-name">カビゴン</span>
+          <span class="char-tagline">爆眠コーラー</span>
+          <span class="style-chip"><span class="style-dot dot-TPS"></span>TPS × 受けすぎコーラー × SD頼み</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TPS × 受けすぎコーラー × SD頼み（超受け身・ナッツ抱えて待つ）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ ブラフ過多バレラー</span>
+            例: No.17 ゲンガー, No.20 リザードン, No.35 サーナイト,
+                No.50 スターミー, No.56 マタドガス, No.62 ニャース, No.65 ベトベトン
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-bad aff-dot"></span>× バリュー厚いバレルマシン</span>
+            例: No.19 カイリュー, No.21 ギャラドス, No.34 ウインディ,
+                No.36 ボスゴドラ, No.51 ヘラクロス
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× TAG全般</span>
+            例: No.15, 16, 18, 19, 20, 21, 22〜30
+          </li>
+        </ul>
+        <div class="char-note">
+          どんなベットも「寝返りコール」で受け止めるが、自分からバリューを取りに行かないため、EVのかなりの部分を逃している。[web:168][web:173]  
+          「コールすべきでないハンドをきちんと降りる」「ナッツ級は自分からベットする」だけで、B〜A帯に届くポテンシャルがあります。[web:122]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.8 ヤミカラス -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.8</span>
+          <span class="char-name">ヤミカラス</span>
+          <span class="char-tagline">闇コレクター</span>
+          <span class="style-chip"><span class="style-dot dot-TPS"></span>TPS × 受けすぎコーラー × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TPS × 受けすぎコーラー × ブラフ多め（ずる賢い盗み鳥型）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 単純LPS</span>
+            例: No.61 コダック, No.63 マリル, No.64 ドードー, No.66 ウパー
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× TAG全般</span>
+            例: No.15, 16, 17, 18, 19, 20, 21, 22〜30（闇討ちのパターンを読まれやすい）
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ バレルマシン</span>
+            例: No.19, 20, 21, 34, 35, 36, 49, 50, 51, 64, 65, 66
+          </li>
+        </ul>
+        <div class="char-note">
+          「情報を盗んでブラフでさらう」構造は強いが、コールとブラフの切り替えタイミングが読まれると一気に丸裸になる。[web:173][web:176]  
+          受けるレンジを減らし、ブラフを厳選して打つだけで、より上位の搾取型に変化できます。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.9 ミルタンク -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.9</span>
+          <span class="char-name">ミルタンク</span>
+          <span class="char-tagline">ミルク安定</span>
+          <span class="style-chip"><span class="style-dot dot-TPS"></span>TPS × 受けすぎコーラー × バランス</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TPS × 受けすぎコーラー × バランス（安定供給型コーラー）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ ブラフ過多型</span>
+            例: No.17, 20, 35, 47, 50, 56, 62, 65
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× TAG全般・LAG全般</span>
+            例: TAG: No.15〜30, LAG: No.46〜60（攻撃性がほぼ育たず押し切られやすい）
+          </li>
+        </ul>
+        <div class="char-note">
+          「穏やかコールでミルクのように勝つ」コンセプトは面白いが、バリューを取り切りに行かないため、勝っても小さく負けは大きくなりがち。[web:168][web:122]  
+          自分からベットする頻度を増やし、「本当に守るべきレンジ」だけ守る意識を持つと、かなり改善します。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.10 トランセル -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.10</span>
+          <span class="char-name">トランセル</span>
+          <span class="char-tagline">繭フォールド</span>
+          <span class="style-chip"><span class="style-dot dot-TPS"></span>TPS × フォールドしすぎ × SD頼み</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TPS × フォールドしすぎ × SD頼み（硬化型・成長前）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>（ほぼなし、極めて限定的）</li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-worst"></span>× 全タイプ</span>
+            常にフォールドしすぎで、スタックが自然消滅しやすい。
+          </li>
+        </ul>
+        <div class="char-note">
+          少しでもベットの風を感じるとすぐ繭にこもる典型ニットで、相手から見れば「一切怖くないプレイヤー」。[web:53][web:170][web:172]  
+          まずは「ポジションを持ったときだけでもレンジを広げる」ことが、繭からの脱却の第一歩になります。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.11 アリアドス -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.11</span>
+          <span class="char-name">アリアドス</span>
+          <span class="char-tagline">糸ブラフ</span>
+          <span class="style-chip"><span class="style-dot dot-TPS"></span>TPS × フォールドしすぎ × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TPS × フォールドしすぎ × ブラフ多め（蜘蛛の巣型・消極ブラフ） 
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ 極端フォールドしすぎ同士</span>
+            例: No.10 トランセル, No.12 フォレトス, No.40 フライゴン, No.55 ダグトリオ, No.70 コイキング, No.71 ビードル, No.72 トゲピー
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× TAG全般</span>
+            例: No.15〜30（フォールド比率の高さからブラフ頻度がバレやすい）
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× 受けすぎコーラー</span>
+            例: No.7, 8, 9, 22, 23, 24, 37, 38, 39, 52, 53, 54, 67, 68, 69
+          </li>
+        </ul>
+        <div class="char-note">
+          普段ほぼ降りているのに、たまの小さなブラフだけ打つため「ブラフ頻度が丸見え」になりがち。  
+          まずは「守るレンジを増やす」か「ブラフをさらに減らす」のどちらかに振り切ると、分かりやすさが減って戦いやすくなります。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.12 フォレトス -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.12</span>
+          <span class="char-name">フォレトス</span>
+          <span class="char-tagline">鉄殻フォールド</span>
+          <span class="style-chip"><span class="style-dot dot-TPS"></span>TPS × フォールドしすぎ × バランス</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> TPS × フォールドしすぎ × バランス（完全防御型・要塞フォルダー）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ LPS弱体型</span>
+            例: No.61, 63, 64, 66, 70
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× LAG全般・TAG全般</span>
+            例: LAG: No.46〜60, TAG: No.15〜30（殻にこもりすぎてポットが育たない）
+          </li>
+        </ul>
+        <div class="char-note">
+          ニット中のニットであり、プリフロ・ポストフロップともにフォールドが多すぎて、長期的な勝ちがほぼ見込めない典型パッシブ。[web:170][web:172]  
+          「プリフロで守るべきポジション（BTN・SB・BBなど）を意識して、レンジを少しだけ広げる」ことから始めるとよいです。
+        </div>
+      </div>
+    </details>
+
+      <!-- No.37 メガニウム -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.37</span>
+          <span class="char-name">メガニウム</span>
+          <span class="char-tagline">花園のコーラー</span>
+          <span class="style-chip"><span class="style-dot dot-NORMAL"></span>ノーマル × 受けすぎコーラー × SD頼み</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> ノーマル × 受けすぎコーラー × SD頼み（温和な草食恐竜）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ ブラフ過多型</span>
+            例: No.17 ゲンガー, No.20 リザードン, No.35 サーナイト,
+                No.47 ニューラ, No.50 スターミー, No.56 マタドガス,
+                No.62 ニャース, No.65 ベトベトン
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× TAG全般・LAG全般</span>
+            例: TAG: No.15〜30, LAG: No.46〜60（攻撃性が足りず押し切られやすい）
+          </li>
+        </ul>
+        <div class="char-note">
+          「穏やかに受けて静かに花を咲かせる」がコンセプトだが、受け身すぎてバリューを取り逃がす場面が非常に多い。[web:168][web:173]  
+          コール頻度を下げつつ、ナッツ級では自分から3ストリート打ちに行く癖を付けると、大きく改善します。[web:122]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.38 ハッサム -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.38</span>
+          <span class="char-name">ハッサム</span>
+          <span class="char-tagline">鋼のコーラー</span>
+          <span class="style-chip"><span class="style-dot dot-NORMAL"></span>ノーマル × 受けすぎコーラー × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> ノーマル × 受けすぎコーラー × ブラフ多め（鋼鉄の知将） 
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ ブラフ過多型</span>
+            例: No.17, 20, 35, 47, 50, 56, 62, 65
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ バリュー厚いバレルマシン・TAG</span>
+            例: No.19, 21, 34, 36, 51（我慢しすぎて反撃タイミングを失いやすい）
+          </li>
+        </ul>
+        <div class="char-note">
+          「鋼で受けてハサミで斬り返す」狙いは良いが、実戦では受ける頻度が高すぎて反撃できる局面まで辿り着けないことが多い。  
+          どのレンジまで受けるかのラインを明確にすると、不要な損失を大きく減らせます。[web:168][web:173]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.40 フライゴン -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.40</span>
+          <span class="char-name">フライゴン</span>
+          <span class="char-tagline">砂漠の幻フォールダー</span>
+          <span class="style-chip"><span class="style-dot dot-NORMAL"></span>ノーマル × フォールドしすぎ × SD頼み</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> ノーマル × フォールドしすぎ × SD頼み（蜃気楼の幻竜）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ LPS弱体型</span>
+            例: No.61, 63, 64, 66, 70
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× LAG全般</span>
+            例: No.46〜60（存在感が薄く、ブラインドで削られ続ける）
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ TAG全般</span>
+            例: No.15〜30
+          </li>
+        </ul>
+        <div class="char-note">
+          「まだいたのか」と思われるほど参加が少なく、勝負所でも相手にアクションを委ねがちなニット寄りプレイ。  
+          BTN・SB・BBでのディフェンスレンジを少し増やすだけで、すぐにB帯レベルには到達できます。[web:170][web:172]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.42 エネコロロ -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.42</span>
+          <span class="char-name">エネコロロ</span>
+          <span class="char-tagline">ふわふわ退避型</span>
+          <span class="style-chip"><span class="style-dot dot-NORMAL"></span>ノーマル × フォールドしすぎ × バランス</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> ノーマル × フォールドしすぎ × バランス（浮遊する均衡フォールダー）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ LPS弱体型</span>
+            例: No.61, 63, 64, 66, 70
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× LAG全般</span>
+            例: No.46〜60（フォールド多くブラインドがじわじわ痛い）
+          </li>
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ TAG全般</span>
+            例: No.15〜30
+          </li>
+        </ul>
+        <div class="char-note">
+          「やだこわい」で降りる頻度が高すぎるため、スタックが自然と削れていく典型タイトパッシブ。  
+          まずはポジションの良いときにだけでも、レンジを広げて戦う意識を持つと、すぐにC上位〜B帯まで改善します。[web:170][web:172]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.43 ゴローニャ -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.43</span>
+          <span class="char-name">ゴローニャ</span>
+          <span class="char-tagline">岩盤SD職人</span>
+          <span class="style-chip"><span class="style-dot dot-NORMAL"></span>ノーマル × 標準 × SD頼み</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> ノーマル × 標準 × SD頼み（重厚な岩の教科書プレイヤー）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ LPS</span>
+            例: No.61〜75（バリューショーダウンが通りやすい）
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ LAG・TAG</span>
+            例: LAG: No.46〜60, TAG: No.15〜30（素直すぎて動きを丸ごと読まれやすい）
+          </li>
+        </ul>
+        <div class="char-note">
+          教科書通りでミスは少ないが、その教科書を知っているレギュラーにとっては非常に狙いやすい相手。  
+          たとえばSBディフェンスや3ベットレンジを少し広げるだけで、一気に「ただの岩」から「読みにくい岩」へと進化します。[web:53][web:176]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.52 レジロック -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.52</span>
+          <span class="char-name">レジロック</span>
+          <span class="char-tagline">岩の守護神LAG</span>
+          <span class="style-chip"><span class="style-dot dot-LAG"></span>LAG × 受けすぎコーラー × SD頼み</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LAG × 受けすぎコーラー × SD頼み（伝説の岩の守護神）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ ブラフ過多バレラー</span>
+            例: No.17, 20, 35, 47, 50, 56, 62, 65
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× バリュー厚いバレルマシン</span>
+            例: No.19, 21, 34, 36, 51（コール多くフリーカードを量産しがち）
+          </li>
+        </ul>
+        <div class="char-note">
+          「LAGなのに受けすぎる」という構造的ミスマッチを抱えており、本来のアグレッションの強みを活かし切れていない。  
+          スタートレンジをもう少しタイトにし、受ける頻度を減らすだけで、B〜A帯のLAGに近づけます。[web:122][web:176]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.53 ライコウ -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.53</span>
+          <span class="char-name">ライコウ</span>
+          <span class="char-tagline">電撃コーラーLAG</span>
+          <span class="style-chip"><span class="style-dot dot-LAG"></span>LAG × 受けすぎコーラー × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LAG × 受けすぎコーラー × ブラフ多め（伝説の雷獣）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ ブラフ過多型</span>
+            例: No.17, 20, 35, 47, 50, 56, 62, 65
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ バリュー厚いバレルマシン・TAG</span>
+            例: No.19, 21, 34, 36, 51, TAG勢 No.15〜30（受けすぎて放電タイミングを逃しがち）
+          </li>
+        </ul>
+        <div class="char-note">
+          コールで電気を蓄え、狙ったスポットで雷ブラフを落とすスタイルだが、我慢しすぎて肝心の放電機会を逃してしまう。  
+          「コールではなくレイズするべきハンド」を増やすことで、より攻撃的なLAGに近づきます。[web:122][web:176]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.54 バンギラス -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.54</span>
+          <span class="char-name">バンギラス</span>
+          <span class="char-tagline">砂嵐の重鎮LAG</span>
+          <span class="style-chip"><span class="style-dot dot-LAG"></span>LAG × 受けすぎコーラー × バランス</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LAG × 受けすぎコーラー × バランス（600族の砂嵐王）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ ブラフ過多型・LPS</span>
+            例: ブラフ過多: No.17, 20, 35, 47, 50, 56, 62, 65<br>
+                LPS: No.61〜75
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ バリュー厚いバレルマシン・TAG</span>
+            例: No.19, 21, 34, 36, 51, TAG勢 No.15〜30
+          </li>
+        </ul>
+        <div class="char-note">
+          コールで場に砂嵐メタを巻き起こすが、受けすぎて本来高い「攻撃種族値」を眠らせてしまうことが多い。  
+          プリフロの3ベットとポストフロップのレイズ頻度を増やすだけで、上位LAGへの道が開けます。[web:122][web:176]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.67 ソーナンス -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.67</span>
+          <span class="char-name">ソーナンス</span>
+          <span class="char-tagline">守備極振り・耐久職人</span>
+          <span class="style-chip"><span class="style-dot dot-LPS"></span>LPS × 受けすぎコーラー × SD頼み</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LPS × 受けすぎコーラー × SD頼み（守備極振り・青壁）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ ブラフ過多バレラー</span>
+            例: No.17, 20, 35, 47, 50, 56, 62, 65
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× TAG全般・LAG全般</span>
+            例: TAG: No.15〜30, LAG: No.46〜60（攻める局面でほぼ何もできない）
+          </li>
+        </ul>
+        <div class="char-note">
+          「どんなベットにもソーナンスと頷いてコールする」典型コーリングステーションで、搾取対象になりやすい。[web:173][web:176]  
+          まずは「弱いハンドはちゃんと降りる」ことと、「強いハンドでは自分からベットする」ことを分けて考えるのが改善の第一歩です。[web:168]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.68 プリン -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.68</span>
+          <span class="char-name">プリン</span>
+          <span class="char-tagline">子守唄コーラー</span>
+          <span class="style-chip"><span class="style-dot dot-LPS"></span>LPS × 受けすぎコーラー × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LPS × 受けすぎコーラー × ブラフ多め（眠らせ系コーラー）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ ブラフ過多型</span>
+            例: No.17, 20, 35, 47, 50, 56, 62, 65（眠らせてからブラフで刺すイメージ）
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× TAG全般・バリュー厚いバレルマシン</span>
+            例: No.15〜30, No.19, 21, 34, 36, 51
+          </li>
+        </ul>
+        <div class="char-note">
+          かわいい見た目とは裏腹に「受けすぎ＋時々大きめブラフ」という構造的リークを抱えており、長期EVはかなりマイナス寄り。  
+          コール頻度を落としてブラフ頻度も下げ、「とにかく強いハンドだけを素直に打つ」方向に寄せると、勝率が改善します。[web:168][web:173]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.69 ヤドラン -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.69</span>
+          <span class="char-name">ヤドラン</span>
+          <span class="char-tagline">のんびり受け師匠</span>
+          <span class="style-chip"><span class="style-dot dot-LPS"></span>LPS × 受けすぎコーラー × バランス</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LPS × 受けすぎコーラー × バランス（超低速コーラー）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-good"></span>○ ブラフ過多型</span>
+            例: No.17, 20, 35, 47, 50, 56, 62, 65
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× TAG全般・LAG全般</span>
+            例: TAG: No.15〜30, LAG: No.46〜60（スロープレイ過多でEVを自ら削りがち）
+          </li>
+        </ul>
+        <div class="char-note">
+          マイペースでコールを積み重ねるが、強い手でもベットを控えがちで、値段を取り損ねることが多い。  
+          「強いときはちゃんとレイズする」最低限のバリュー取りができるようになると、B帯まではすぐに到達できます。[web:168][web:173]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.73 ラッキー -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.73</span>
+          <span class="char-name">ラッキー</span>
+          <span class="char-tagline">幸運SD職人</span>
+          <span class="style-chip"><span class="style-dot dot-LPS"></span>LPS × 標準 × SD頼み</span>
+        </div>
+        <span class="char-tier-label">C Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LPS × 標準 × SD頼み（ラッキー体質・ショーダウン高勝率型）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-even"></span>△ LPS同士</span>
+            例: No.61〜75 の他LPS（バリューがやや上振れしやすい）
+          </li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× TAG全般・強LAG</span>
+            例: TAG: No.15〜30, LAG: No.49, 50, 51, 60（ブラフ少なく弱いときの防御が薄い）
+          </li>
+        </ul>
+        <div class="char-note">
+          「いつも持ってる」印象を与える一方で、実際にはハンドが入っていない時間帯に大きく削られやすい構造。  
+          ラッキーに頼らず、プリフロップレンジと3ベット頻度を整えることで、より実力依存の勝ち方にシフトできます。[web:171][web:176]
+        </div>
+      </div>
+    </details>
+
+  </div>
+    <!-- D Tier -->
+  <div class="tier-section">
+    <div class="tier-header">
+      <div class="tier-badge D">D</div>
+      <div>
+        <div class="tier-title-main">D Tier（純フィッシュ・極端リーク）</div>
+        <div class="tier-title-sub">明確な構造的欠点を持つスタイル群。基本的に積極的に狙いたい相手。</div>
+      </div>
+    </div>
+    <ul class="tier-list">
+      <li>No.41 オコリザル（爆発ニットLAG）</li>
+      <li>No.46 ラティアス（誤作動LAG）</li>
+      <li>No.49 ボーマンダ（暴風マニアック）</li>
+      <li>No.55 ダグトリオ（穴掘りニットLAG）</li>
+      <li>No.56 マタドガス（毒霧ブラファー）</li>
+      <li>No.57 カイロス（突撃LAG）</li>
+      <li>No.58 ケンタロス（暴走LAG）</li>
+      <li>No.59 ストライク（切り込みLAG）</li>
+      <li>No.61 コダック（迷子LPS）</li>
+      <li>No.62 ニャース（欲張りブラファー）</li>
+      <li>No.63 マリル（水風船コーラー）</li>
+      <li>No.64 ドードー（突撃バレルLPS）</li>
+      <li>No.65 ベトベトン（ドロドロバレラー）</li>
+      <li>No.66 ウパー（水たまりLPS）</li>
+      <li>No.70 コイキング（はねるだけLPS）</li>
+      <li>No.71 ビードル（レイド参加だけ）</li>
+      <li>No.72 トゲピー（お祈りLPS）</li>
+      <li>No.74 エイパム（いたずらLPS）</li>
+      <li>No.75 メタモン（相手次第コピー）</li>
+    </ul>
+
+    <!-- No.41 オコリザル -->
+    <details class="char-block" open>
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.41</span>
+          <span class="char-name">オコリザル</span>
+          <span class="char-tagline">爆発ニットLAG</span>
+          <span class="style-chip"><span class="style-dot dot-NORMAL"></span>ノーマル × フォールドしすぎ × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> ノーマル × フォールドしすぎ × ブラフ多め（溜め込んでから爆発するタイプ）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>明確な構造有利はほぼなく、下手なLPS相手にたまに刺さる程度。</li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-worst"></span>× TAG・LAG全般</span>
+            例: No.15〜30, No.46〜60（普段降りすぎ＋たまのブラフが超目立つ）
+          </li>
+        </ul>
+        <div class="char-note">
+          ほとんど参加せず、たまにキレて意味不明なブラフでスタックを飛ばす典型「爆発ニット」。[web:181][web:185]  
+          参加頻度を少し増やし、ブラフ頻度を大幅に下げるだけで C〜B 帯までは改善可能です。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.46 ラティアス -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.46</span>
+          <span class="char-name">ラティアス</span>
+          <span class="char-tagline">誤作動LAG</span>
+          <span class="style-chip"><span class="style-dot dot-LAG"></span>LAG × 打ち逃げ × SD頼み</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LAG × 打ち逃げ × SD頼み（本来強いのに誤作動しがちな竜）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>フォールドしすぎ・弱LPSにはそれなりに有利。</li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× 強TAG・強LAG</span>
+            例: No.15, 19, 20, 21, 28, 30, No.49, 50, 51, 60
+          </li>
+        </ul>
+        <div class="char-note">
+          参加頻度は高いのにストリート計画が甘く、「プリフロだけLAGでポストフロはニット」になりがちなタイプ。  
+          ターン以降のバレル・チェックのプランを事前に決めておけば、B〜A帯LAGにまで化けられます。[web:154][web:182]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.49 ボーマンダ -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.49</span>
+          <span class="char-name">ボーマンダ</span>
+          <span class="char-tagline">暴風マニアック</span>
+          <span class="style-chip"><span class="style-dot dot-LAG"></span>LAG × バレルマシン × SD頼み</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LAG × バレルマシン × SD頼み（ほぼマニアック寄り暴風竜）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>フォールドしすぎ・弱TPS・弱LPS相手には上振れすると大量に勝てる。</li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-worst"></span>× コーラー系・上手いTAG</span>
+            例: コーラー: No.7, 9, 22, 24, 37, 38, 39, 52〜54, 67〜69<br>
+                TAG: No.15, 19, 20, 21, 28, 30
+          </li>
+        </ul>
+        <div class="char-note">
+          ほぼ全ハンドでバレルを打ち続けるマニアック寄りで、短期的には爆勝ち・爆負けの振れ幅が激しい。[web:182][web:185]  
+          プリフロの参加レンジを絞り、ブラフバレル頻度を半分以下にするだけで、A帯LAG候補になります。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.55 ダグトリオ -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.55</span>
+          <span class="char-name">ダグトリオ</span>
+          <span class="char-tagline">穴掘りニットLAG</span>
+          <span class="style-chip"><span class="style-dot dot-LAG"></span>LAG × フォールドしすぎ × SD頼み</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LAG × フォールドしすぎ × SD頼み（穴からたまに飛び出すタイプ）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>明確な構造有利は薄く、弱いLPSをたまに狩れる程度。</li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-worst"></span>× TAG・LAG全般</span>
+            例: No.15〜30, No.46〜60（プリフロもポストもフォールドが多すぎる）
+          </li>
+        </ul>
+        <div class="char-note">
+          「LAGを自称しつつ実態はニット」というタイプで、レンジの穴が多すぎて読みやすい。  
+          BTN・COからのオープンレンジをきちんと広げるだけで、一気にC〜B帯まで上がれます。[web:181][web:185]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.56 マタドガス -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.56</span>
+          <span class="char-name">マタドガス</span>
+          <span class="char-tagline">毒霧ブラファー</span>
+          <span class="style-chip"><span class="style-dot dot-LAG"></span>LAG × フォールドしすぎ × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LAG × フォールドしすぎ × ブラフ多め（毒煙マニア寄り）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>フォールドしすぎ・弱TPS相手にはブラフでポットを拾いやすい。</li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-worst"></span>× コーラー系・ブラフ耐性の高いレギュラー</span>
+            例: No.7, 9, 22, 24, 37, 38, 39, 52〜54, 67〜69、およびTAG勢
+          </li>
+        </ul>
+        <div class="char-note">
+          「たまに吹く毒霧ブラフ」が強烈だが、見抜かれると一気にスタックを失う、典型的なオーバーブラフ・フィッシュ。[web:182][web:185]  
+          ブラフ頻度を1/3まで落とし、バリュー比重を上げるだけで C〜B 帯までは充分に届きます。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.57 カイロス -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.57</span>
+          <span class="char-name">カイロス</span>
+          <span class="char-tagline">突撃LAG</span>
+          <span class="style-chip"><span class="style-dot dot-LAG"></span>LAG × フォールドしすぎ × バランス</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LAG × フォールドしすぎ × バランス（角で突撃、でもすぐ諦める）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>フォールドしすぎ同士の卓ではそこそこ勝てる程度。</li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× TAG・LAG全般</span>
+            例: No.15〜30, No.46〜60（プリフロ・ポストとも中途半端）
+          </li>
+        </ul>
+        <div class="char-note">
+          スタート時だけLAGで、途中からすぐに諦めるため、ポットを膨らませるだけ膨らませて降りるリークが目立つ。  
+          どのレンジまで降りずに戦うかをはっきり決めるだけで、C帯まではすぐに改善できます。[web:185]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.58 ケンタロス -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.58</span>
+          <span class="char-name">ケンタロス</span>
+          <span class="char-tagline">暴走LAG</span>
+          <span class="style-chip"><span class="style-dot dot-LAG"></span>LAG × 標準 × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LAG × 標準 × ブラフ多め（突進しまくる暴走牛）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>フォールドしすぎ・弱TPS・弱LPSに対しては上振れすると一気にスタックを刈り取れる。</li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-worst"></span>× コーラー系・TAG上級者</span>
+            例: No.7, 9, 22, 24, 37, 38, 39, 52〜54, 67〜69, TAG勢
+          </li>
+        </ul>
+        <div class="char-note">
+          常に頭を下げて突進するため、相手にとっては「待っていればチップを持ってきてくれる牛」になりやすい。[web:182][web:185]  
+          参加レンジとブラフ頻度を絞り、「本当に踏み込むべきスポット」だけに限定できれば、B〜A帯LAGにもなり得ます。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.59 ストライク -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.59</span>
+          <span class="char-name">ストライク</span>
+          <span class="char-tagline">切り込みLAG</span>
+          <span class="style-chip"><span class="style-dot dot-LAG"></span>LAG × 標準 × SD頼み</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LAG × 標準 × SD頼み（斬撃先行型）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>フォールドしすぎ・弱TPS・弱LPSにはそれなりに有利。</li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× TAG全般・コーラー系</span>
+            例: No.15〜30, No.7, 9, 22, 24, 37, 38, 39, 52〜54, 67〜69
+          </li>
+        </ul>
+        <div class="char-note">
+          プリフロ・フロップまでは鋭いが、ターン以降でブレーキが早く、ブラフもバリューも取り切れない「尻すぼみLAG」。  
+          深いポットでのプランを増やし、「途中で諦めない」スポットを明確にすると、B帯まではかなり現実的です。[web:154][web:185]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.61 コダック -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.61</span>
+          <span class="char-name">コダック</span>
+          <span class="char-tagline">迷子LPS</span>
+          <span class="style-chip"><span class="style-dot dot-LPS"></span>LPS × 打ち逃げ × SD頼み</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LPS × 打ち逃げ × SD頼み（何をしているか自分でも分かっていない） 
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>ほぼなし。相手のミス頼みでしか勝てない構造。</li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-worst"></span>× TAG・LAG全般</span>
+            例: ほぼすべてのレギュラー
+          </li>
+        </ul>
+        <div class="char-note">
+          参加ハンドもラインもバラバラで、一貫性のないルースパッシブ典型フィッシュ。[web:122][web:173]  
+          まずはプリフロップレンジ表を真似るだけでも、C帯〜B帯に大きくジャンプできます。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.62 ニャース -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.62</span>
+          <span class="char-name">ニャース</span>
+          <span class="char-tagline">欲張りブラファー</span>
+          <span class="style-chip"><span class="style-dot dot-LPS"></span>LPS × 打ち逃げ × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LPS × 打ち逃げ × ブラフ多め（コイン欲しさに無理ブラフする猫）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>極端にフォールドしすぎる相手にはたまに刺さる。</li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-worst"></span>× コーラー系・TAGレギュラー</span>
+            例: 大半のレギュラー・フィッシュにすら搾取されやすい
+          </li>
+        </ul>
+        <div class="char-note">
+          ルースパッシブなのにブラフも多いという、最も燃えやすい構造の1つ。[web:173][web:176]  
+          「ブラフをほぼゼロにする」「強いときだけ小さくバリューを打つ」程度から始めると、損失を大きく減らせます。[web:186]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.63 マリル -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.63</span>
+          <span class="char-name">マリル</span>
+          <span class="char-tagline">水風船コーラー</span>
+          <span class="style-chip"><span class="style-dot dot-LPS"></span>LPS × 打ち逃げ × バランス</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LPS × 打ち逃げ × バランス（水風船のように受けて割れるタイプ）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>オーバーブラフ・マニアックに対してはたまに上振れする。</li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× TAG全般・堅実LAG</span>
+            例: ほぼすべての勝ち組レギュラー
+          </li>
+        </ul>
+        <div class="char-note">
+          「なんとなくコールして気づいたらスタックがない」典型的コーリングステーション。  
+          きちんとハンドレンジとボードを意識し、「弱いところでは降りる」を覚えれば、C帯まではすぐに届きます。[web:122][web:186]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.64 ドードー -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.64</span>
+          <span class="char-name">ドードー</span>
+          <span class="char-tagline">突撃バレルLPS</span>
+          <span class="style-chip"><span class="style-dot dot-LPS"></span>LPS × バレルマシン × SD頼み</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LPS × バレルマシン × SD頼み（首二本で訳も分からずバレル）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>極端にフォールドしすぎる相手には一時的に有利。</li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-worst"></span>× コーラー系・TAG・LAG全般</span>
+          </li>
+        </ul>
+        <div class="char-note">
+          ルースパッシブのくせにマルチバレルを乱発する、構造的に最悪な組み合わせの1つ。[web:122][web:173]  
+          「フロップだけ打つ」「バリューだけ三連」という風に役割分担するだけで、C帯まで押し上げられます。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.65 ベトベトン -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.65</span>
+          <span class="char-name">ベトベトン</span>
+          <span class="char-tagline">ドロドロバレラー</span>
+          <span class="style-chip"><span class="style-dot dot-LPS"></span>LPS × バレルマシン × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LPS × バレルマシン × ブラフ多め（泥沼マニア寄り）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>ごく一部の超ニットには一時的に有利になることがある。</li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-worst"></span>× レギュラー全般・コーラー全般</span>
+          </li>
+        </ul>
+        <div class="char-note">
+          ドロドロしたレンジでバレルしまくるため、相手からは「常に何か打ってくるフィッシュ」にしか見えない。[web:173][web:176]  
+          まずは参加レンジとブラフ頻度を半分以下にし、「強いときだけ大きく打つ」を徹底するのが改善の近道です。[web:186]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.66 ウパー -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.66</span>
+          <span class="char-name">ウパー</span>
+          <span class="char-tagline">水たまりLPS</span>
+          <span class="style-chip"><span class="style-dot dot-LPS"></span>LPS × バレルマシン × バランス</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LPS × バレルマシン × バランス（浅い水たまり三連）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>極端ニットには一時的に有利になることがある程度。</li>
+        </ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li>
+            <span class="aff-chip"><span class="aff-dot aff-bad"></span>× レギュラー全般</span>
+          </li>
+        </ul>
+        <div class="char-note">
+          ルースに入りすぎ＋浅いレンジで三連バレルを打つため、スタックがじわじわと蒸発していきやすい構造。  
+          プリフロレンジを絞り、「強いハンドだけ三連、弱いハンドは早めに諦める」を徹底するだけで、C帯までは届きます。[web:122][web:186]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.70 コイキング -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.70</span>
+          <span class="char-name">コイキング</span>
+          <span class="char-tagline">はねるだけLPS</span>
+          <span class="style-chip"><span class="style-dot dot-LPS"></span>LPS × フォールドしすぎ × SD頼み</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LPS × フォールドしすぎ × SD頼み（はねるだけで何もしない）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list"><li>ほぼなし。</li></ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li><span class="aff-chip"><span class="aff-dot aff-worst"></span>× すべてのまともなプレイヤー</span></li>
+        </ul>
+        <div class="char-note">
+          参加も少なく、参加してもほぼ何もせずチェック・フォールドに終始する、最弱クラスのLPSフィッシュ。[web:173][web:176]  
+          まずは「BTN・COからはオープンレイズする」「強いハンドは必ずベットする」という基本から始める必要があります。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.71 ビードル -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.71</span>
+          <span class="char-name">ビードル</span>
+          <span class="char-tagline">レイド参加だけ</span>
+          <span class="style-chip"><span class="style-dot dot-LPS"></span>LPS × フォールドしすぎ × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LPS × フォールドしすぎ × ブラフ多め（たまに刺さるだけの虫）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list"><li>ほぼなし。相手の大きなミス頼み。</li></ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li><span class="aff-chip"><span class="aff-dot aff-worst"></span>× すべてのレギュラー・多くのフィッシュ</span></li>
+        </ul>
+        <div class="char-note">
+          普段は降りているのに、たまの場違いなブラフだけ打つため、EV的にはコイキングと同等レベル。  
+          「まずブラフをやめて、強いハンドだけをプレーする」ところからやっとスタートラインに立てます。[web:176][web:186]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.72 トゲピー -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.72</span>
+          <span class="char-name">トゲピー</span>
+          <span class="char-tagline">お祈りLPS</span>
+          <span class="style-chip"><span class="style-dot dot-LPS"></span>LPS × フォールドしすぎ × バランス</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LPS × フォールドしすぎ × バランス（運任せ・お祈りプレイ） 
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list"><li>ほぼなし。ショートスタックの一発勝負でたまに勝つ程度。</li></ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li><span class="aff-chip"><span class="aff-dot aff-worst"></span>× すべての構造的にマトモなプレイヤー</span></li>
+        </ul>
+        <div class="char-note">
+          プレイ判断がスキルではなく「運頼み」になっている典型で、長期的には確実に沈む構造。  
+          レンジ表・基本戦略を導入し、意思決定を「お祈り」ではなく「基準」に基づかせるところから始める必要があります。[web:171][web:176]
+        </div>
+      </div>
+    </details>
+
+    <!-- No.74 エイパム -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.74</span>
+          <span class="char-name">エイパム</span>
+          <span class="char-tagline">いたずらLPS</span>
+          <span class="style-chip"><span class="style-dot dot-LPS"></span>LPS × 標準 × ブラフ多め</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LPS × 標準 × ブラフ多め（遊び感覚フィッシュ）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list"><li>極度のニットに対して一時的にチップを拾えることがある程度。</li></ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li><span class="aff-chip"><span class="aff-dot aff-bad"></span>× レギュラー・コーラー系全般</span></li>
+        </ul>
+        <div class="char-note">
+          「面白そうだから打ってみる」系のブラフが多く、構造的には最も狙いやすいルースパッシブの一種。[web:173][web:176]  
+          遊びブラフを封印し、プリフロ・ポストフロップの基本チャートを真似るだけで、C帯にはすぐ届きます。
+        </div>
+      </div>
+    </details>
+
+    <!-- No.75 メタモン -->
+    <details class="char-block">
+      <summary>
+        <div class="char-head">
+          <span class="char-no">No.75</span>
+          <span class="char-name">メタモン</span>
+          <span class="char-tagline">相手次第コピー</span>
+          <span class="style-chip"><span class="style-dot dot-LPS"></span>LPS × 標準 × バランス</span>
+        </div>
+        <span class="char-tier-label">D Tier</span>
+      </summary>
+      <div class="char-body">
+        <div class="char-meta">
+          <strong>分類:</strong> LPS × 標準 × バランス（相手のスタイルを真似るだけ）
+        </div>
+        <div class="char-aff-row"><strong>有利な相手:</strong></div>
+        <ul class="char-aff-list"><li>相手が強くないLPS・フィッシュなら、コピーでもそこそこ戦える。</li></ul>
+        <div class="char-aff-row"><strong>不利な相手:</strong></div>
+        <ul class="char-aff-list">
+          <li><span class="aff-chip"><span class="aff-dot aff-bad"></span>× TAG・LAG勝ち組レギュラー</span></li>
+        </ul>
+        <div class="char-note">
+          「強い人のマネをしているつもり」が多く、レンジやサイズだけ真似して中身が伴っていないタイプ。  
+          まずは誰かをコピーする前に、自分のプリフロップチャートと基本コンセプトを固めることが必須です。[web:171][web:176]
+        </div>
+      </div>
+    </details>
+
+  </div>
