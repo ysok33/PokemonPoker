@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>プレイスタイル ティアリスト（強さ基準・75種）</title>
   <style>
     @page {
@@ -113,70 +114,67 @@
       body { background: #ffffff; color: #000000; }
     }
 
-    /* ===== ナビゲーションバー ===== */
-.top-nav {
-  position: sticky;      /* スクロールで上固定。固定したくなければ static に。 */
-  top: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-  margin: -8px -20px 12px;
-  background: linear-gradient(
-    to right,
-    rgba(15, 23, 42, 0.98),
-    rgba(30, 64, 175, 0.95)
-  );
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
-  border-bottom: 1px solid rgba(148, 163, 184, 0.5);
-}
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      margin: -8px -20px 12px;
+      background: linear-gradient(
+        to right,
+        rgba(15, 23, 42, 0.98),
+        rgba(30, 64, 175, 0.95)
+      );
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.5);
+    }
 
-.nav-logo {
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  font-size: 0.85rem;
-  color: #e3f2fd;
-}
+    .nav-logo {
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      font-size: 0.85rem;
+      color: #e3f2fd;
+    }
 
-.nav-links {
-  display: flex;
-  gap: 14px;
-}
+    .nav-links {
+      display: flex;
+      gap: 14px;
+    }
 
-.nav-links a {
-  color: #e5e9ff;
-  text-decoration: none;
-  font-size: 0.88rem;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-}
+    .nav-links a {
+      color: #e5e9ff;
+      text-decoration: none;
+      font-size: 0.88rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
 
-.nav-links a:hover {
-  background: rgba(15, 23, 42, 0.85);
-  border-color: rgba(191, 219, 254, 0.8);
-}
+    .nav-links a:hover {
+      background: rgba(15, 23, 42, 0.85);
+      border-color: rgba(191, 219, 254, 0.8);
+    }
 
-/* 画面幅が狭いとき */
-@media (max-width: 720px) {
-  .top-nav {
-    padding: 8px 14px;
-    margin: -8px -14px 10px;
-  }
-  .nav-logo {
-    font-size: 0.8rem;
-  }
-  .nav-links {
-    gap: 8px;
-  }
-  .nav-links a {
-    font-size: 0.8rem;
-    padding: 5px 8px;
-  }
-}
-    
+    @media (max-width: 720px) {
+      .top-nav {
+        padding: 8px 14px;
+        margin: -8px -14px 10px;
+      }
+      .nav-logo {
+        font-size: 0.8rem;
+      }
+      .nav-links {
+        gap: 8px;
+      }
+      .nav-links a {
+        font-size: 0.8rem;
+        padding: 5px 8px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -189,16 +187,15 @@
       <a href="Type-explanation.html">タイプ解説</a>
     </div>
   </nav>
-  
+
   <h1>PLAYSTYLE TIER LIST（強さ基準・75種）</h1>
   <div class="subtitle">
     Pokerにおける「勝ちやすさ・リークの少なさ」を基準に、No.1〜No.75をS〜Dに分類したティア表です。<br>
-    各番号は元リストのNo.と対応しています。
+    各番号は修正後リストのNo.と対応しています。
   </div>
 
   <div class="tier-container">
 
-    <!-- S Tier -->
     <div class="tier-row">
       <div class="tier-label tier-S">
         S
@@ -207,12 +204,11 @@
       <div class="tier-content">
         <div class="tier-item"><span class="no">No.15</span><span class="name">ブラッキー</span><span class="tag">闇影バランス</span></div>
         <div class="tier-item"><span class="no">No.21</span><span class="name">ギャラドス</span><span class="tag">荒波バランスTAG</span></div>
-        <div class="tier-item"><span class="no">No.28</span><span class="name">フーディン</span><span class="tag">読心術TAG</span></div>
-        <div class="tier-item"><span class="no">No.30</span><span class="name">メタグロス</span><span class="tag">完璧TAG</span></div>
+        <div class="tier-item"><span class="no">No.28</span><span class="name">ホウオウ</span><span class="tag">聖炎の標準王</span></div>
+        <div class="tier-item"><span class="no">No.29</span><span class="name">メタグロス</span><span class="tag">完璧TAG</span></div>
       </div>
     </div>
 
-    <!-- A Tier -->
     <div class="tier-row">
       <div class="tier-label tier-A">
         A
@@ -229,13 +225,12 @@
         <div class="tier-item"><span class="no">No.24</span><span class="name">ラプラス</span><span class="tag">氷海コーラー</span></div>
         <div class="tier-item"><span class="no">No.25</span><span class="name">ラティオス</span><span class="tag">誇りの竜TAG</span></div>
         <div class="tier-item"><span class="no">No.26</span><span class="name">ニドキング</span><span class="tag">王のプライドTAG</span></div>
-        <div class="tier-item"><span class="no">No.27</span><span class="name">ミロカロス</span><span class="tag">美のプライドTAG</span></div>
-        <div class="tier-item"><span class="no">No.29</span><span class="name">ピカチュウ</span><span class="tag">電撃TAG</span></div>
+        <div class="tier-item"><span class="no">No.27</span><span class="name">カイオーガ</span><span class="tag">深海の選別王</span></div>
+        <div class="tier-item"><span class="no">No.30</span><span class="name">ライコウ</span><span class="tag">電光標準TAG</span></div>
         <div class="tier-item"><span class="no">No.35</span><span class="name">サーナイト</span><span class="tag">共感するブラファー</span></div>
       </div>
     </div>
 
-    <!-- B Tier -->
     <div class="tier-row">
       <div class="tier-label tier-B">
         B
@@ -248,7 +243,7 @@
         <div class="tier-item"><span class="no">No.5</span><span class="name">ヤドキング</span><span class="tag">知将バレル</span></div>
         <div class="tier-item"><span class="no">No.6</span><span class="name">アブソル</span><span class="tag">凶兆バレル</span></div>
         <div class="tier-item"><span class="no">No.13</span><span class="name">ハガネール</span><span class="tag">長城スタンダード</span></div>
-        <div class="tier-item"><span class="no">No.14</span><span class="name">サンダース</span><span class="tag">電撃TPS</span></div>
+        <div class="tier-item"><span class="no">No.14</span><span class="name">ヨルノズク</span><span class="tag">夜眼の教科書</span></div>
 
         <div class="tier-item"><span class="no">No.31</span><span class="name">カイリキー</span><span class="tag">剛腕の一撃</span></div>
         <div class="tier-item"><span class="no">No.32</span><span class="name">バシャーモ</span><span class="tag">炎蹴りの奇襲</span></div>
@@ -267,7 +262,6 @@
       </div>
     </div>
 
-    <!-- C Tier -->
     <div class="tier-row">
       <div class="tier-label tier-C">
         C
@@ -289,7 +283,7 @@
         <div class="tier-item"><span class="no">No.43</span><span class="name">ゴローニャ</span><span class="tag">岩盤SD職人</span></div>
 
         <div class="tier-item"><span class="no">No.52</span><span class="name">レジロック</span><span class="tag">岩の守護神LAG</span></div>
-        <div class="tier-item"><span class="no">No.53</span><span class="name">ライコウ</span><span class="tag">電撃コーラーLAG</span></div>
+        <div class="tier-item"><span class="no">No.53</span><span class="name">ハリテヤマ</span><span class="tag">受け太鼓の駆け引き師</span></div>
         <div class="tier-item"><span class="no">No.54</span><span class="name">バンギラス</span><span class="tag">砂嵐の重鎮LAG</span></div>
 
         <div class="tier-item"><span class="no">No.67</span><span class="name">ソーナンス</span><span class="tag">守備極振り・耐久職人</span></div>
@@ -299,7 +293,6 @@
       </div>
     </div>
 
-    <!-- D Tier -->
     <div class="tier-row">
       <div class="tier-label tier-D">
         D
@@ -309,7 +302,7 @@
         <div class="tier-item"><span class="no">No.41</span><span class="name">オコリザル</span><span class="tag">威嚇フォールダー</span></div>
         <div class="tier-item"><span class="no">No.46</span><span class="name">ラティアス</span><span class="tag">幻惑の一撃LAG</span></div>
         <div class="tier-item"><span class="no">No.49</span><span class="name">ボーマンダ</span><span class="tag">暴竜バレルLAG</span></div>
-        <div class="tier-item"><span class="no">No.55</span><span class="name">ダグトリオ</span><span class="tag">三位一体ブラインドスティーラー</span></div>
+        <div class="tier-item"><span class="no">No.55</span><span class="name">キュウコン</span><span class="tag">妖炎の見切り狐</span></div>
         <div class="tier-item"><span class="no">No.56</span><span class="name">マタドガス</span><span class="tag">毒霧ブラファー</span></div>
         <div class="tier-item"><span class="no">No.57</span><span class="name">カイロス</span><span class="tag">時計L切りバランサー</span></div>
         <div class="tier-item"><span class="no">No.58</span><span class="name">ケンタロス</span><span class="tag">突進LAG</span></div>
